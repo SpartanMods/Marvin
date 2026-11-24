@@ -144,8 +144,7 @@
 				<include>Settings_RowLook</include>
 				<radiowidth>48</radiowidth>
 				<radioheight>28</radioheight>
-				<radioposx>-32</radioposx>
-				<textureradioonfocus colordiffuse="text_dark">common/pill16.png</textureradioonfocus>
+								<textureradioonfocus colordiffuse="text_dark">common/pill16.png</textureradioonfocus>
 				<textureradioonnofocus colordiffuse="text">common/pill16.png</textureradioonnofocus>
 				<textureradiooffocus colordiffuse="66000000">common/pill16.png</textureradiooffocus>
 				<textureradiooffnofocus colordiffuse="text_faint">common/pill16.png</textureradiooffnofocus>
@@ -213,6 +212,7 @@
 	</include>
 	<include name="Settings_RowLook">
 		<height>68</height>
+		<aligny>center</aligny>
 		<font>Label</font>
 		<textoffsetx>28</textoffsetx>
 		<textcolor>text</textcolor>

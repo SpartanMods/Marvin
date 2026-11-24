@@ -1,3 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Tier-2/3 templates (DESIGN.md §3): generic, on-brand layouts for every window
+	Marvin does not hand-design, so Kodi never hits a missing window.
+-->
 <includes>
+	<!-- Generic media window: header + list 50 + art/plot panel -->
+	<include name="Template_MediaWindow">
+		<param name="list_id">50</param>
+		<definition>
+			<include>Background_Solid</include>
+			<include>View_Header</include>
+			<control type="group">
+				<visible>Control.IsVisible($PARAM[list_id])</visible>
+				<control type="image">
+					<left>1080</left><top>150</top><width>740</width><height>520</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>200</fadetime>
+					<texture background="true">$VAR[View_ListArt]</texture>
+				</control>
+				<control type="textbox">
+					<left>1080</left><top>700</top><width>740</width><height>300</height>
+					<label>$INFO[ListItem.Plot]$INFO[ListItem.Property(Addon.Description)]</label>
+				</control>
+			</control>
+			<control type="list" id="$PARAM[list_id]">
+				<left>72</left><top>140</top><width>920</width><height>900</height>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<viewtype label="31102">list</viewtype>
+				<include content="Template_IconRows"><param name="id" value="$PARAM[list_id]"/></include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1010</left><top>150</top><height>880</height>
+				<onleft>$PARAM[list_id]</onleft>
+				<orientation>vertical</orientation>
+			</control>
+		</definition>
+	</include>
+
+	<!-- List rows with a small icon -->
+	<include name="Template_IconRows">
+		<param name="id"/>
+		<param name="w">920</param>
+		<definition>
+			<itemlayout width="$PARAM[w]" height="76">
+				<control type="image">
+					<left>32</left><top>14</top><width>48</width><height>48</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="label">
+					<left>100</left><width>620</width><height>76</height>
+					<font>Label</font><textcolor>text_muted</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>100</left><width>780</width><height>76</height>
+					<align>right</align>
+					<font>Small</font><textcolor>text_faint</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout width="$PARAM[w]" height="76">
+				<control type="image">
+					<left>12</left><width>880</width><height>76</height>
+					<texture border="24" colordiffuse="focus_fill">common/pill48.png</texture>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="image">
+					<left>32</left><top>14</top><width>48</width><height>48</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="label">
+					<left>100</left><width>620</width><height>76</height>
+					<font>LabelBold</font>
+					<textcolor>$VAR[Template_RowText]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>100</left><width>780</width><height>76</height>
+					<align>right</align>
+					<font>Small</font>
+					<textcolor>$VAR[Template_RowText]</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+	<variable name="Template_RowText">
+		<value condition="Control.HasFocus(50) | Control.HasFocus(11) | Control.HasFocus(20) | Control.HasFocus(21) | Control.HasFocus(450) | Control.HasFocus(451) | Control.HasFocus(120) | Control.HasFocus(150) | Control.HasFocus(5) | Control.HasFocus(52) | Control.HasFocus(13)">text_dark</value>
+		<value>text</value>
+	</variable>
+
+	<!-- Generic dialog with a list (id) and optional button row -->
+	<include name="Template_ListDialog">
+		<param name="list_id">50</param>
+		<param name="header_id">1</param>
+		<param name="header"></param>
+		<param name="w">1100</param>
+		<param name="h">820</param>
+		<param name="list_type">list</param>
+		<definition>
+			<include>Dialog_Scrim</include>
+			<control type="group">
+				<include content="Dialog_Frame">
+					<param name="w" value="$PARAM[w]"/><param name="h" value="$PARAM[h]"/>
+					<param name="header_id" value="$PARAM[header_id]"/><param name="header" value="$PARAM[header]"/>
+				</include>
+				<control type="$PARAM[list_type]" id="$PARAM[list_id]">
+					<left>40</left><top>110</top><width>1020</width><height>580</height>
+					<ondown>9900</ondown>
+					<include content="Template_IconRows"><param name="id" value="$PARAM[list_id]"/><param name="w" value="1020"/></include>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- Settings page layout (SettingsCategory / DialogSettings / DialogAddonSettings) -->
+	<include name="Template_SettingsPage">
+		<param name="categories">true</param>
+		<definition>
+			<include>Background_Solid</include>
+			<control type="label" id="2">
+				<left>96</left><top>40</top><width>1300</width><height>60</height>
+				<font>Title</font>
+			</control>
+			<include>Clock</include>
+			<control type="grouplist" id="3">
+				<left>72</left><top>140</top><width>400</width><height>880</height>
+				<onright>5</onright>
+				<itemgap>4</itemgap>
+				<visible>$PARAM[categories]</visible>
+			</control>
+			<control type="grouplist" id="5">
+				<left>520</left><top>140</top><width>1180</width><height>720</height>
+				<onleft>3</onleft>
+				<onright>60</onright>
+				<pagecontrol>60</pagecontrol>
+				<itemgap>2</itemgap>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1724</left><top>150</top><height>700</height>
+				<onleft>5</onleft>
+				<orientation>vertical</orientation>
+			</control>
+			<control type="textbox" id="6">
+				<left>548</left><top>890</top><width>1150</width><height>140</height>
+				<font>Small</font>
+			</control>
+			<include content="Settings_Templates"><param name="w" value="1180"/></include>
+		</definition>
+	</include>
+	<!-- ============ Small parts ============ -->
+	<include name="Key">
+		<param name="id"/>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>100</width><height>76</height>
+				<font>Title</font><align>center</align><aligny>center</aligny><textoffsetx>0</textoffsetx>
+				<textcolor>text</textcolor><focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="14" colordiffuse="focus_fill">common/r14.png</texturefocus>
+				<texturenofocus border="14" colordiffuse="accent_soft">common/r14.png</texturenofocus>
+			</control>
+		</definition>
+	</include>
+	<include name="KeyWide">
+		<param name="id"/>
+		<param name="label"/>
+		<param name="w">160</param>
+		<param name="font">LabelBold</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[w]</width><height>76</height>
+				<font>$PARAM[font]</font><label>$PARAM[label]</label>
+				<align>center</align><aligny>center</aligny><textoffsetx>0</textoffsetx>
+				<textcolor>text</textcolor><focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="14" colordiffuse="focus_fill">common/r14.png</texturefocus>
+				<texturenofocus border="14" colordiffuse="accent_soft">common/r14.png</texturenofocus>
+			</control>
+		</definition>
+	</include>
+	<include name="NumKey">
+		<param name="id"/>
+		<param name="x"/>
+		<param name="y"/>
+		<param name="label"/>
+		<param name="font">TitleLarge</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<left>$PARAM[x]</left><top>$PARAM[y]</top><width>152</width><height>100</height>
+				<font>$PARAM[font]</font><label>$PARAM[label]</label>
+				<align>center</align><aligny>center</aligny><textoffsetx>0</textoffsetx>
+				<textcolor>text</textcolor><focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="14" colordiffuse="focus_fill">common/r14.png</texturefocus>
+				<texturenofocus border="14" colordiffuse="accent_soft">common/r14.png</texturenofocus>
+			</control>
+		</definition>
+	</include>
+	<include name="InfoRow">
+		<param name="label"/>
+		<param name="value"/>
+		<definition>
+			<control type="group">
+				<height>56</height>
+				<control type="label"><width>240</width><height>56</height><font>Small</font><textcolor>text_faint</textcolor><label>$PARAM[label]</label></control>
+				<control type="label"><left>240</left><width>440</width><height>56</height><font>Label</font><label>$PARAM[value]</label></control>
+			</control>
+		</definition>
+	</include>
+	<include name="Settings_Radio">
+		<radiowidth>48</radiowidth>
+		<radioheight>28</radioheight>
+				<textureradioonfocus colordiffuse="text_dark">common/pill16.png</textureradioonfocus>
+		<textureradioonnofocus colordiffuse="text">common/pill16.png</textureradioonnofocus>
+		<textureradiooffocus colordiffuse="66000000">common/pill16.png</textureradiooffocus>
+		<textureradiooffnofocus colordiffuse="text_faint">common/pill16.png</textureradiooffnofocus>
+	</include>
+	<include name="Settings_Tile">
+		<param name="focused"/>
+		<definition>
+			<control type="group">
+				<left>12</left><top>12</top>
+				<control type="image">
+					<width>420</width><height>166</height>
+					<texture border="14" colordiffuse="bg_raised">common/r14.png</texture>
+				</control>
+				<control type="image">
+					<width>420</width><height>166</height>
+					<texture border="14" colordiffuse="focus_fill">common/r14.png</texture>
+					<visible>$PARAM[focused] + Control.HasFocus(9000)</visible>
+				</control>
+				<control type="label">
+					<left>28</left><top>22</top><width>60</width><height>56</height>
+					<font>Icon40</font>
+					<textcolor>$VAR[Settings_TileText_$PARAM[focused]]</textcolor>
+					<label>$INFO[ListItem.Property(icon)]</label>
+				</control>
+				<control type="label">
+					<left>28</left><top>84</top><width>370</width><height>40</height>
+					<font>LabelBold</font>
+					<textcolor>$VAR[Settings_TileText_$PARAM[focused]]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>28</left><top>120</top><width>370</width><height>32</height>
+					<font>Small</font>
+					<textcolor>$VAR[Settings_TileSub_$PARAM[focused]]</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<variable name="Settings_TileText_false"><value>text</value></variable>
+	<variable name="Settings_TileText_true"><value condition="Control.HasFocus(9000)">text_dark</value><value>text</value></variable>
+	<variable name="Settings_TileSub_false"><value>text_muted</value></variable>
+	<variable name="Settings_TileSub_true"><value condition="Control.HasFocus(9000)">text_dark</value><value>text_muted</value></variable>
 </includes>

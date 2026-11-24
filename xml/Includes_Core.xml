@@ -127,6 +127,9 @@
 		<param name="align">left</param>
 		<param name="aligny">bottom</param>
 		<param name="font">TitleLarge</param>
+		<!-- Kodi labels cannot bottom-align, so the text fallback gets its own line box -->
+		<param name="fb_top">130</param>
+		<param name="fb_h">90</param>
 		<definition>
 			<control type="group">
 				<width>$PARAM[width]</width>
@@ -142,21 +145,23 @@
 					<texture>$INFO[$PARAM[li].Art(tvshow.clearlogo)]</texture>
 					<visible>String.IsEmpty($PARAM[li].Art(clearlogo))</visible>
 				</control>
-				<control type="textbox">
-					<height>$PARAM[height]</height>
+				<control type="label">
+					<top>$PARAM[fb_top]</top>
+					<height>$PARAM[fb_h]</height>
 					<font>$PARAM[font]</font>
 					<textcolor>text</textcolor>
 					<align>$PARAM[align]</align>
-					<aligny>$PARAM[aligny]</aligny>
+					<aligny>center</aligny>
 					<label>[UPPERCASE]$INFO[$PARAM[li].TVShowTitle]$INFO[$PARAM[li].Title][/UPPERCASE]</label>
 					<visible>String.IsEmpty($PARAM[li].Art(clearlogo)) + String.IsEmpty($PARAM[li].Art(tvshow.clearlogo)) + String.IsEmpty($PARAM[li].TVShowTitle)</visible>
 				</control>
-				<control type="textbox">
-					<height>$PARAM[height]</height>
+				<control type="label">
+					<top>$PARAM[fb_top]</top>
+					<height>$PARAM[fb_h]</height>
 					<font>$PARAM[font]</font>
 					<textcolor>text</textcolor>
 					<align>$PARAM[align]</align>
-					<aligny>$PARAM[aligny]</aligny>
+					<aligny>center</aligny>
 					<label>[UPPERCASE]$INFO[$PARAM[li].TVShowTitle][/UPPERCASE]</label>
 					<visible>String.IsEmpty($PARAM[li].Art(clearlogo)) + String.IsEmpty($PARAM[li].Art(tvshow.clearlogo)) + !String.IsEmpty($PARAM[li].TVShowTitle)</visible>
 				</control>
@@ -233,59 +238,6 @@
 	</include>
 
 	<!-- ============ Buttons ============ -->
-	<!-- Pill button with optional icon. Focus = solid off-white pill with dark text. -->
-	<include name="Button_Pill">
-		<param name="id"/>
-		<param name="label"/>
-		<param name="icon"></param>
-		<param name="width">auto</param>
-		<param name="height">72</param>
-		<param name="visible">true</param>
-		<param name="onclick">noop</param>
-		<definition>
-			<control type="button" id="$PARAM[id]">
-				<width>$PARAM[width]</width>
-				<height>$PARAM[height]</height>
-				<font>LabelBold</font>
-				<label>$PARAM[label]</label>
-				<align>center</align>
-				<aligny>center</aligny>
-				<textoffsetx>36</textoffsetx>
-				<textcolor>text</textcolor>
-				<focusedcolor>text_dark</focusedcolor>
-				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
-				<texturenofocus border="24" colordiffuse="accent_soft">common/pill48.png</texturenofocus>
-				<onclick>$PARAM[onclick]</onclick>
-				<visible>$PARAM[visible]</visible>
-			</control>
-		</definition>
-	</include>
-	<!-- Round icon button (OSD, info screen). -->
-	<include name="Button_Icon">
-		<param name="id"/>
-		<param name="icon"/>
-		<param name="size">80</param>
-		<param name="font">Icon40</param>
-		<param name="visible">true</param>
-		<param name="onclick">noop</param>
-		<definition>
-			<control type="button" id="$PARAM[id]">
-				<width>$PARAM[size]</width>
-				<height>$PARAM[size]</height>
-				<font>$PARAM[font]</font>
-				<label>$PARAM[icon]</label>
-				<align>center</align>
-				<aligny>center</aligny>
-				<textoffsetx>0</textoffsetx>
-				<textcolor>text</textcolor>
-				<focusedcolor>text_dark</focusedcolor>
-				<texturefocus colordiffuse="focus_fill">common/circle.png</texturefocus>
-				<texturenofocus colordiffuse="accent_soft">common/circle.png</texturenofocus>
-				<onclick>$PARAM[onclick]</onclick>
-				<visible>$PARAM[visible]</visible>
-			</control>
-		</definition>
-	</include>
 
 	<!-- ============ Chips (media flags) ============ -->
 	<include name="Chip">

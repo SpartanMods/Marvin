@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: PVR channel guide (fixedlist 11) -->
+<window>
+	<defaultcontrol always="true">11</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include content="Template_ListDialog"><param name="list_id" value="11"/><param name="header_id" value="2"/><param name="header" value=""/><param name="list_type" value="fixedlist"/></include>
+	</controls>
+</window>

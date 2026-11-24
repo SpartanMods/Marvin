@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: game OSD -->
+<window>
+	<defaultcontrol always="true">1103</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<control type="group" id="1000">
+			<left>96</left><top>200</top><width>800</width><height>680</height>
+			<include content="Panel_Glass"/>
+			<control type="list" id="1103">
+				<left>20</left><top>20</top><width>760</width><height>640</height>
+				<include content="Dialog_ListLayouts"><param name="id" value="1103"/><param name="w" value="760"/><param name="lw" value="700"/></include>
+			</control>
+			<control type="textbox" id="1101"><left>40</left><top>20</top><width>720</width><height>1</height></control>
+		</control>
+	</controls>
+</window>

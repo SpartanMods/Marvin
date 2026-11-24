@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Profile picker (52 profiles, 20 power) -->
+<window>
+	<defaultcontrol always="true">52</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include>Background_Solid</include>
+		<control type="label"><left>0</left><top>220</top><width>1920</width><height>80</height><align>center</align><font>TitleLarge</font><label>$LOCALIZE[31190]</label></control>
+		<control type="fixedlist" id="52">
+			<left>360</left><top>380</top><width>1200</width><height>340</height>
+			<orientation>horizontal</orientation><focusposition>2</focusposition><movement>2</movement>
+			<ondown>20</ondown>
+			<itemlayout width="240" height="340">
+				<control type="image"><left>40</left><top>40</top><width>160</width><height>160</height><texture diffuse="masks/circle.png">$INFO[ListItem.Icon]</texture></control>
+				<control type="label"><left>0</left><top>220</top><width>240</width><height>40</height><align>center</align><textcolor>text_muted</textcolor><label>$INFO[ListItem.Label]</label></control>
+			</itemlayout>
+			<focusedlayout width="240" height="340">
+				<control type="group"><include>Anim_CardFocus</include>
+					<control type="image"><left>40</left><top>40</top><width>160</width><height>160</height><texture diffuse="masks/circle.png">$INFO[ListItem.Icon]</texture></control>
+					<control type="label"><left>0</left><top>220</top><width>240</width><height>40</height><align>center</align><font>LabelBold</font><label>$INFO[ListItem.Label]</label></control>
+				</control>
+			</focusedlayout>
+		</control>
+		<control type="group"><centerleft>50%</centerleft><top>820</top><width>84</width>
+			<include content="OSD_IconButton"><param name="id" value="20"/><param name="icon" value="$VAR[Icon_Power]"/><param name="onclick" value="ActivateWindow(ShutdownMenu)"/></include>
+		</control>
+		<include>Clock</include>
+	</controls>
+</window>

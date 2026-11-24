@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: weather (unused) -->
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include>Background_Solid</include>
+		<control type="label"><left>96</left><top>40</top><width>1300</width><height>60</height><font>Title</font><label>$INFO[Weather.Location]</label></control>
+		<include>Clock</include>
+		<control type="label"><left>96</left><top>200</top><width>1300</width><height>120</height><font>Display</font><label>$INFO[Weather.Temperature]</label></control>
+		<control type="label"><left>96</left><top>330</top><width>1300</width><height>50</height><font>Title</font><textcolor>text_muted</textcolor><label>$INFO[Weather.Conditions]</label></control>
+		<control type="grouplist" id="9000">
+			<left>96</left><top>900</top><width>1000</width><height>76</height><orientation>horizontal</orientation><itemgap>16</itemgap>
+			<include content="Dialog_Button"><param name="id" value="10000"/><param name="label" value="$LOCALIZE[184]"/></include>
+		</control>
+	</controls>
+</window>

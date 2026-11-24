@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Add-on settings -->
+<window>
+	<defaultcontrol always="true">3</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<include content="Dialog_Frame"><param name="w" value="1500"/><param name="h" value="920"/><param name="header_id" value="2"/></include>
+			<control type="grouplist" id="3">
+				<left>32</left><top>110</top><width>360</width><height>680</height>
+				<onright>5</onright><itemgap>4</itemgap>
+				<visible>true</visible>
+			</control>
+			<control type="grouplist" id="5">
+				<left>420</left><top>110</top><width>1040</width><height>580</height>
+				<onleft>3</onleft><ondown>9000</ondown><pagecontrol>60</pagecontrol><itemgap>2</itemgap>
+			</control>
+			<control type="scrollbar" id="60"><left>1470</left><top>110</top><height>570</height><onleft>5</onleft><orientation>vertical</orientation></control>
+			<control type="textbox" id="6">
+				<left>448</left><top>700</top><width>1000</width><height>90</height><font>Small</font>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>40</left><top>812</top><width>1420</width><height>76</height>
+				<orientation>horizontal</orientation><align>right</align><itemgap>16</itemgap>
+				<onup>5</onup>
+				<include content="Dialog_Button"><param name="id" value="28"/><param name="label" value="$LOCALIZE[186]"/></include>
+				<include content="Dialog_Button"><param name="id" value="29"/><param name="label" value="$LOCALIZE[222]"/></include>
+				<include content="Dialog_Button"><param name="id" value="30"/><param name="label" value="$LOCALIZE[409]"/></include>
+			</control>
+			<control type="group">
+				<left>420</left><top>110</top>
+				<include content="Settings_Templates"><param name="w" value="1040"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

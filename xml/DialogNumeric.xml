@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi: 1 heading, 4 input, 10-19 digits, 20 prev, 21 enter, 22 next, 23 backspace -->
+<window>
+	<defaultcontrol always="true">21</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<centerleft>50%</centerleft><centertop>50%</centertop><width>560</width><height>760</height>
+			<include content="Panel_Glass"/>
+			<control type="textbox" id="1"><left>40</left><top>24</top><width>480</width><height>60</height><font>Title</font><textcolor>text</textcolor></control>
+			<control type="label" id="4"><left>40</left><top>92</top><width>480</width><height>80</height><align>center</align><font>TitleLarge</font></control>
+			<control type="group">
+				<left>40</left><top>190</top>
+				<include content="NumKey"><param name="id" value="11"/><param name="x" value="0"/><param name="y" value="0"/><param name="label" value="1"/></include>
+				<include content="NumKey"><param name="id" value="12"/><param name="x" value="164"/><param name="y" value="0"/><param name="label" value="2"/></include>
+				<include content="NumKey"><param name="id" value="13"/><param name="x" value="328"/><param name="y" value="0"/><param name="label" value="3"/></include>
+				<include content="NumKey"><param name="id" value="14"/><param name="x" value="0"/><param name="y" value="112"/><param name="label" value="4"/></include>
+				<include content="NumKey"><param name="id" value="15"/><param name="x" value="164"/><param name="y" value="112"/><param name="label" value="5"/></include>
+				<include content="NumKey"><param name="id" value="16"/><param name="x" value="328"/><param name="y" value="112"/><param name="label" value="6"/></include>
+				<include content="NumKey"><param name="id" value="17"/><param name="x" value="0"/><param name="y" value="224"/><param name="label" value="7"/></include>
+				<include content="NumKey"><param name="id" value="18"/><param name="x" value="164"/><param name="y" value="224"/><param name="label" value="8"/></include>
+				<include content="NumKey"><param name="id" value="19"/><param name="x" value="328"/><param name="y" value="224"/><param name="label" value="9"/></include>
+				<include content="NumKey"><param name="id" value="23"/><param name="x" value="0"/><param name="y" value="336"/><param name="label" value="$VAR[Icon_CaretLeft]"/><param name="font" value="Icon32"/></include>
+				<include content="NumKey"><param name="id" value="10"/><param name="x" value="164"/><param name="y" value="336"/><param name="label" value="0"/></include>
+				<include content="NumKey"><param name="id" value="21"/><param name="x" value="328"/><param name="y" value="336"/><param name="label" value="$VAR[Icon_Check]"/><param name="font" value="Icon32"/></include>
+				<include content="NumKey"><param name="id" value="20"/><param name="x" value="0"/><param name="y" value="448"/><param name="label" value="$VAR[Icon_CaretUp]"/><param name="font" value="Icon32"/></include>
+				<include content="NumKey"><param name="id" value="22"/><param name="x" value="328"/><param name="y" value="448"/><param name="label" value="$VAR[Icon_CaretDown]"/><param name="font" value="Icon32"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

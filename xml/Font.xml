@@ -16,7 +16,7 @@
 		<font><name>Menu</name><filename>Inter-SemiBold.ttf</filename><size>32</size></font>
 		<font><name>Title</name><filename>Inter-SemiBold.ttf</filename><size>38</size></font>
 		<font><name>TitleLarge</name><filename>Inter-Bold.ttf</filename><size>56</size></font>
-		<font><name>Hero</name><filename>Inter-Bold.ttf</filename><size>84</size></font>
+		<font><name>Display</name><filename>Inter-Bold.ttf</filename><size>68</size></font>
 		<font><name>Clock</name><filename>Inter-Medium.ttf</filename><size>32</size></font>
 		<font><name>Mono</name><filename>Inter-Medium.ttf</filename><size>24</size></font>
 		<font><name>Icon24</name><filename>Phosphor.ttf</filename><size>24</size></font>

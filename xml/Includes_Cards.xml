@@ -157,6 +157,7 @@
 						<param name="width" value="220"/>
 						<param name="height" value="64"/>
 						<param name="font" value="LabelBold"/>
+						<param name="fb_top" value="24"/><param name="fb_h" value="40"/>
 					</include>
 				</control>
 			</control>

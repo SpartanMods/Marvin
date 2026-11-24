@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: PVR guide controls -->
+<window>
+	<defaultcontrol always="true">201</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include content="Template_ListDialog"><param name="list_id" value="201"/><param name="header_id" value="1"/><param name="header" value=""/><param name="list_type" value="list"/></include>
+	</controls>
+</window>

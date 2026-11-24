@@ -84,6 +84,17 @@ Three tiers:
 - Categories: Home · Look · Library · Info screen · Playback · Search · Integrations (detected addons + install buttons) · Maintenance (reset, clear caches, about).
 - Every setting has a good default and maps to one `Skin.String`/`Skin.Bool` documented in a single file.
 
+### Skin setting keys (the single source of truth)
+| Key | Type | Meaning | Default |
+|---|---|---|---|
+| `Home.Layout` | String | `appletv` \| `netflix` (Netflix arrives in v0.4) | empty = appletv |
+| `Home.HideMovies` / `Home.HideTV` / `Home.HideFavourites` | Bool | hide a home menu item | off |
+| `Widget.<Movies\|TV>.<1-8>.Path` | String | content path of a home row | set by Startup.xml |
+| `Widget.<Movies\|TV>.<1-8>.Label` | String | row title | set by Startup.xml |
+| `Widget.<Movies\|TV>.<1-8>.Style` | String | `poster` \| `landscape` | set by Startup.xml |
+| `Widgets.Initialised` | Bool | defaults written; reset re-seeds them | off |
+| `Marvin.SetupDone` | Bool | first-run "recommended settings" prompt answered | off |
+
 ## 12. Build, test, deliver
 - Repo root **is** the skin (`skin.marvin`): `addon.xml`, `xml/`, `media/`, `fonts/`, `colors/`, `language/`, `extras/`, `scripts/`.
 - Checks on every change: XML well-formedness; include/variable/expression reference checker; filename case check; texture existence check.
@@ -91,8 +102,24 @@ Three tiers:
 - Delivery: zip install first → personal GitHub-Pages Kodi repository once stable.
 - Maintained mostly through Claude: strict conventions + checks over cleverness.
 
-## 13. Roadmap
-- **v0.1 "Watchable"** — foundation (colors, fonts, includes, checks, screenshot rig), Apple TV home with Movies/TV rows, Poster Wall, Episode List, movie + episode Info, minimal OSD + Audio/Subs panel, pause screen, core dialogs, tier-3 templates for all other windows.
+## 13. Implementation notes (learned while building v0.1)
+- **OK → Info needs a Kodi setting.** Kodi ignores a container's `<onclick>` in library windows; OK follows
+  *Settings → Media → Videos → Default select action*. Marvin ships `resources/marvin.py` (Kodi's built-in
+  Python, no add-on) and asks once on first run to apply: select action = Show information, hide `..` items,
+  hide "All seasons". Re-apply from Marvin settings → Maintenance. Home rows open Info natively.
+- **Pause screen lives in `DialogSeekBar.xml`**, which Kodi shows/hides from its `<visible>` conditions;
+  controls in `VideoFullScreen.xml` are not drawn over paused video.
+- **Kodi labels cannot bottom-align**, so the logo text fallback takes explicit `fb_top`/`fb_h` per use.
+- **Kodi 20 lists ignore `width="auto"` items**; season tabs use fixed widths.
+- **Buttons wrapped in groups lose automatic navigation**; Home rows and Info buttons carry explicit
+  up/down/left/right links (Kodi skips hidden targets by following their own links).
+- **Kodi colour `00000000` means "no tint" (renders white)**; use the named `clear` colour instead.
+- **Default view per content type** works by giving every view `viewtype=list` and a `<visible>`
+  condition; Kodi picks the first visible view in `<views>` order.
+- **Seek/slider nibs render at texture size**; only small dedicated textures (`common/nib.png`) are used.
+
+## 14. Roadmap
+- **v0.1 "Watchable"** (built) — foundation (colors, fonts, includes, checks, screenshot rig), Apple TV home with Movies/TV rows, Poster Wall, Episode List, movie + episode Info, minimal OSD + Audio/Subs panel, pause screen, core dialogs, tier-3 templates for all other windows.
 - **v0.2 "Browse"** — Landscape + List/Showcase views, sort/filter side panel, collections, TV show Info with seasons, person/cast.
 - **v0.3 "Find"** — search with autofill + history, TMDbHelper layer (ratings, recommendations, trailers).
 - **v0.4 "Tune"** — full settings page, Netflix home layout, Up Next styling, GitHub-Pages repository.

@@ -23,11 +23,8 @@
 
 	<!-- Content -->
 	<expression name="Content_Playable">Container.Content(movies) | Container.Content(episodes) | Container.Content(musicvideos)</expression>
-	<expression name="Content_Library">Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets)</expression>
 	<expression name="Content_PosterWall">Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets)</expression>
-	<expression name="Content_Episodic">Container.Content(seasons) | Container.Content(episodes)</expression>
 
 	<!-- Player -->
-	<expression name="Player_OSDVisible">Window.IsVisible(videoosd) | Window.IsVisible(1101)</expression>
-	<expression name="Player_PauseScreen">Player.Paused + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !$EXP[Player_OSDVisible] + !Window.IsVisible(fullscreeninfo) + !Window.IsVisible(playerprocessinfo)</expression>
+	<expression name="Player_PauseScreen">Player.Paused + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !Window.IsVisible(videoosd) + !Window.IsVisible(1101) + !Window.IsVisible(fullscreeninfo) + !Window.IsVisible(playerprocessinfo)</expression>
 </includes>

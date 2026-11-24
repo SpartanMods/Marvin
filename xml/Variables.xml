@@ -76,10 +76,6 @@
 		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
 		<value>$INFO[ListItem.Art(thumb)]</value>
 	</variable>
-	<variable name="Art_Logo">
-		<value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
-		<value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
-	</variable>
 	<!-- Title used when there is no logo: show title for episodes/seasons -->
 	<variable name="Label_LogoTitle">
 		<value condition="Container.Content(episodes) + String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
@@ -128,10 +124,6 @@
 	<variable name="Volume_Icon">
 		<value condition="Player.Muted">$VAR[Icon_Mute]</value>
 		<value>$VAR[Icon_Audio]</value>
-	</variable>
-	<variable name="Player_Logo">
-		<value condition="!String.IsEmpty(VideoPlayer.Art(tvshow.clearlogo))">$INFO[VideoPlayer.Art(tvshow.clearlogo)]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Art(clearlogo))">$INFO[VideoPlayer.Art(clearlogo)]</value>
 	</variable>
 	<variable name="Player_Title">
 		<value condition="!String.IsEmpty(VideoPlayer.TVShowTitle)">$INFO[VideoPlayer.TVShowTitle]</value>

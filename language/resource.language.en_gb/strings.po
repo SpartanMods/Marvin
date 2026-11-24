@@ -122,3 +122,123 @@ msgstr ""
 msgctxt "#31140"
 msgid "Next"
 msgstr ""
+
+msgctxt "#31150"
+msgid "Home, look and behaviour"
+msgstr ""
+
+msgctxt "#31151"
+msgid "Video, audio and subtitles"
+msgstr ""
+
+msgctxt "#31152"
+msgid "Sources and file lists"
+msgstr ""
+
+msgctxt "#31153"
+msgid "Scrapers and artwork"
+msgstr ""
+
+msgctxt "#31154"
+msgid "Remote control and sharing"
+msgstr ""
+
+msgctxt "#31155"
+msgid "Skin, language and screensaver"
+msgstr ""
+
+msgctxt "#31156"
+msgid "Users and login"
+msgstr ""
+
+msgctxt "#31157"
+msgid "Display, audio output and input"
+msgstr ""
+
+msgctxt "#31158"
+msgid "Install and manage add-ons"
+msgstr ""
+
+msgctxt "#31159"
+msgid "Browse and copy files"
+msgstr ""
+
+msgctxt "#31160"
+msgid "Hardware and storage"
+msgstr ""
+
+msgctxt "#31161"
+msgid "Recent activity"
+msgstr ""
+
+msgctxt "#31162"
+msgid "Maintenance"
+msgstr ""
+
+msgctxt "#31163"
+msgid "Reset home rows"
+msgstr ""
+
+msgctxt "#31164"
+msgid "Restore the default widget rows"
+msgstr ""
+
+msgctxt "#31165"
+msgid "Apply recommended Kodi settings"
+msgstr ""
+
+msgctxt "#31166"
+msgid "OK opens Info, hide '..' and 'All seasons'"
+msgstr ""
+
+msgctxt "#31167"
+msgid "Recommended settings applied"
+msgstr ""
+
+msgctxt "#31168"
+msgid "About"
+msgstr ""
+
+msgctxt "#31170"
+msgid "Space"
+msgstr ""
+
+msgctxt "#31171"
+msgid "Delete"
+msgstr ""
+
+msgctxt "#31172"
+msgid "Layout"
+msgstr ""
+
+msgctxt "#31180"
+msgid "Codec"
+msgstr ""
+
+msgctxt "#31181"
+msgid "Format"
+msgstr ""
+
+msgctxt "#31182"
+msgid "Playback details"
+msgstr ""
+
+msgctxt "#31183"
+msgid "Decoder"
+msgstr ""
+
+msgctxt "#31184"
+msgid "Deinterlace"
+msgstr ""
+
+msgctxt "#31185"
+msgid "Audio format"
+msgstr ""
+
+msgctxt "#31186"
+msgid "Cache"
+msgstr ""
+
+msgctxt "#31190"
+msgid "Who's watching?"
+msgstr ""

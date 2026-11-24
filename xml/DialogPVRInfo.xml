@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: PVR programme info (400 plot) -->
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<include content="Dialog_Frame"><param name="w" value="1200"/><param name="h" value="640"/><param name="header" value="$INFO[ListItem.Title]"/></include>
+			<control type="textbox" id="400"><left>48</left><top>110</top><width>1100</width><height>380</height></control>
+			<control type="grouplist" id="9000">
+				<left>48</left><top>530</top><width>1100</width><height>76</height><orientation>horizontal</orientation><itemgap>12</itemgap>
+				<include content="Dialog_Button"><param name="id" value="5"/><param name="width" value="200"/></include>
+				<include content="Dialog_Button"><param name="id" value="6"/><param name="width" value="200"/></include>
+				<include content="Dialog_Button"><param name="id" value="7"/><param name="width" value="200"/></include>
+				<include content="Dialog_Button"><param name="id" value="8"/><param name="width" value="200"/></include>
+				<include content="Dialog_Button"><param name="id" value="4"/><param name="label" value="$LOCALIZE[186]"/><param name="width" value="200"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

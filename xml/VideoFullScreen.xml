@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Fullscreen video: only the pause screen lives here; Kodi renders the video. -->
+<!-- Kodi renders the video; Marvin's overlays live in DialogSeekBar (seek + pause) and VideoOSD. -->
 <window>
-	<controls>
-		<include>Player_Pause</include>
-	</controls>
+	<controls/>
 </window>

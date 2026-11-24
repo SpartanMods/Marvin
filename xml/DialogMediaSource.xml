@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi: 2 header, 10 paths, 11 browse, 12 name, 13 add, 14 remove, 18 OK, 19 cancel -->
+<window>
+	<defaultcontrol always="true">10</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<include content="Dialog_Frame"><param name="w" value="1300"/><param name="h" value="760"/><param name="header_id" value="2"/></include>
+			<control type="list" id="10">
+				<left>40</left><top>120</top><width>900</width><height>380</height>
+				<onright>9001</onright><ondown>12</ondown>
+				<include content="Dialog_ListLayouts"><param name="id" value="10"/><param name="w" value="900"/><param name="lw" value="840"/></include>
+			</control>
+			<control type="edit" id="12">
+				<left>40</left><top>520</top><width>900</width>
+				<onup>10</onup><ondown>9000</ondown><onright>9001</onright>
+				<include>Settings_RowLook</include>
+				<label>$LOCALIZE[1022]</label>
+			</control>
+			<control type="grouplist" id="9001">
+				<left>990</left><top>120</top><width>270</width><height>380</height>
+				<onleft>10</onleft><itemgap>14</itemgap>
+				<include content="Dialog_Button"><param name="id" value="11"/><param name="label" value="$LOCALIZE[1024]"/></include>
+				<include content="Dialog_Button"><param name="id" value="13"/><param name="label" value="$LOCALIZE[15019]"/></include>
+				<include content="Dialog_Button"><param name="id" value="14"/><param name="label" value="$LOCALIZE[1210]"/></include>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>40</left><top>640</top><width>1220</width><height>80</height>
+				<orientation>horizontal</orientation><align>right</align><itemgap>16</itemgap>
+				<onup>12</onup>
+				<include content="Dialog_Button"><param name="id" value="18"/><param name="label" value="$LOCALIZE[186]"/></include>
+				<include content="Dialog_Button"><param name="id" value="19"/><param name="label" value="$LOCALIZE[222]"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

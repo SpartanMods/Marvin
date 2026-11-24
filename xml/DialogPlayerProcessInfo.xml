@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Player process info (O key) -->
+<window>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<control type="group">
+			<right>96</right><top>96</top><width>760</width><height>560</height>
+			<include content="Panel_Glass"/>
+			<control type="label"><left>40</left><top>28</top><width>680</width><height>48</height><font>LabelBold</font><label>$LOCALIZE[31182]</label></control>
+			<control type="grouplist">
+				<left>40</left><top>96</top><width>680</width><height>440</height>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[31183]"/><param name="value" value="$INFO[Player.Process(videodecoder)]$INFO[Player.Process(videohwdecoder), (HW: ,)]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[31181]"/><param name="value" value="$INFO[Player.Process(pixformat)]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[291]"/><param name="value" value="$INFO[Player.Process(videowidth)]$INFO[Player.Process(videoheight),x,]$INFO[Player.Process(videofps),  @ , fps]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[31184]"/><param name="value" value="$INFO[Player.Process(deintmethod)]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[292]"/><param name="value" value="$INFO[Player.Process(audiodecoder)]$INFO[Player.Process(audiochannels),  ·  ,]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[31185]"/><param name="value" value="$INFO[Player.Process(audiosamplerate),, Hz]$INFO[Player.Process(audiobitspersample),  ·  , bit]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[31186]"/><param name="value" value="$INFO[Player.CacheLevel,,%]"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

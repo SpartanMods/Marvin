@@ -21,9 +21,10 @@
 			<animation effect="fade" end="0" time="200" condition="$EXP[Info_Rows]" reversible="true">Conditional</animation>
 			<control type="group">
 				<include content="Logo">
-					<param name="width" value="760"/>
+					<param name="width" value="1000"/>
 					<param name="height" value="210"/>
-					<param name="font" value="Hero"/>
+					<param name="font" value="Display"/>
+					<param name="fb_top" value="120"/><param name="fb_h" value="90"/>
 				</include>
 			</control>
 			<!-- Episodes: episode title under the show logo -->

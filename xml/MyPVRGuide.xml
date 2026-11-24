@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: minimal EPG grid (control 10) for completeness -->
+<window>
+	<defaultcontrol always="true">10</defaultcontrol>
+	<views>10</views>
+	<include>Anim_Window</include>
+	<controls>
+		<include>Background_Solid</include>
+		<include>View_Header</include>
+		<control type="epggrid" id="10">
+			<left>96</left><top>140</top><width>1728</width><height>880</height>
+			<timeblocks>36</timeblocks>
+			<rulerunit>6</rulerunit>
+			<orientation>vertical</orientation>
+			<viewtype label="19029">list</viewtype>
+			<progresstexture colordiffuse="accent_soft">common/white.png</progresstexture>
+			<rulerlayout height="48" width="40">
+				<control type="label"><width>240</width><height>48</height><font>Small</font><textcolor>text_muted</textcolor><label>$INFO[ListItem.Label]</label></control>
+			</rulerlayout>
+			<channellayout height="72" width="320">
+				<control type="label"><left>16</left><width>300</width><height>72</height><font>Label</font><label>$INFO[ListItem.ChannelName]</label></control>
+			</channellayout>
+			<focusedchannellayout height="72" width="320">
+				<control type="label"><left>16</left><width>300</width><height>72</height><font>LabelBold</font><label>$INFO[ListItem.ChannelName]</label></control>
+			</focusedchannellayout>
+			<itemlayout height="72" width="40">
+				<control type="image"><left>2</left><top>2</top><right>2</right><bottom>2</bottom><texture border="8" colordiffuse="bg_raised">common/r8.png</texture></control>
+				<control type="label"><left>12</left><right>8</right><height>72</height><font>Small</font><label>$INFO[ListItem.Label]</label></control>
+			</itemlayout>
+			<focusedlayout height="72" width="40">
+				<control type="image"><left>2</left><top>2</top><right>2</right><bottom>2</bottom><texture border="8" colordiffuse="focus_fill">common/r8.png</texture></control>
+				<control type="label"><left>12</left><right>8</right><height>72</height><font>Small</font><textcolor>text_dark</textcolor><label>$INFO[ListItem.Label]</label></control>
+			</focusedlayout>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: picture info (list 5) -->
+<window>
+	<defaultcontrol always="true">5</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include content="Template_ListDialog"><param name="list_id" value="5"/><param name="header_id" value="1"/><param name="header" value="$LOCALIZE[13406]"/><param name="list_type" value="list"/></include>
+	</controls>
+</window>

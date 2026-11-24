@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Tier 1 of playback: a thin seekbar while seeking (DESIGN.md §9) -->
+<!--
+	Kodi shows this dialog automatically from its <visible> conditions.
+	Tier 1 (seeking): thin seek bar.  Tier 2 (paused): the pause screen.
+-->
 <window>
 	<include>Anim_Window</include>
-	<visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Forwarding | Player.Rewinding | [Player.Paused + !$EXP[Player_PauseScreen]]</visible>
-	<visible>!Window.IsVisible(videoosd) + !Window.IsVisible(1101) + Player.HasVideo</visible>
+	<visible>Player.HasVideo + !Window.IsVisible(videoosd) + !Window.IsVisible(1101)</visible>
+	<visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Forwarding | Player.Rewinding | Player.Paused | !String.IsEmpty(Player.SeekNumeric)</visible>
 	<controls>
-		<include>Player_SeekBar</include>
+		<include>Player_Pause</include>
+		<control type="group">
+			<visible>!$EXP[Player_PauseScreen]</visible>
+			<include>Player_SeekBar</include>
+		</control>
 	</controls>
 </window>

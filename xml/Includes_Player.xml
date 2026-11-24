@@ -43,14 +43,6 @@
 					<righttexture colordiffuse="B3000000">common/tick.png</righttexture>
 					<info>Player.Chapters</info>
 				</control>
-				<control type="slider">
-					<top>-8</top><width>1728</width><height>24</height>
-					<texturesliderbar colordiffuse="clear">common/white.png</texturesliderbar>
-					<textureslidernib colordiffuse="text">common/nib.png</textureslidernib>
-					<textureslidernibfocus colordiffuse="text">common/nib.png</textureslidernibfocus>
-					<info>Player.SeekBar</info>
-					<visible>Player.Seeking | Player.HasPerformedSeek(2)</visible>
-				</control>
 				<control type="label">
 					<top>24</top><width>600</width><height>40</height>
 					<font>Mono</font>
@@ -77,6 +69,7 @@
 					<param name="width" value="640"/>
 					<param name="height" value="160"/>
 					<param name="font" value="TitleLarge"/>
+					<param name="fb_top" value="90"/><param name="fb_h" value="70"/>
 				</include>
 			</control>
 			<control type="label">

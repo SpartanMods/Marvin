@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: music info (songs list 50) -->
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include content="Template_ListDialog"><param name="list_id" value="50"/><param name="header_id" value="1"/><param name="header" value=""/><param name="list_type" value="list"/></include>
+	</controls>
+</window>
