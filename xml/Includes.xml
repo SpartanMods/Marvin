@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Marvin include root. Every other include file is pulled in from here.
+	Conventions (see DESIGN.md):
+	  * Colors are semantic names from colors/defaults.xml; never raw hex.
+	  * Optional add-ons are only ever tested through $EXP[Has_*] (Expressions.xml).
+	  * Home layouts differ only in Includes_Home_<layout>.xml (geometry).
+-->
+<includes>
+	<include file="Expressions.xml"/>
+	<include file="Variables.xml"/>
+	<include file="Includes_Core.xml"/>
+	<include file="Includes_Cards.xml"/>
+	<include file="Includes_Home.xml"/>
+	<include file="Includes_Home_appletv.xml"/>
+	<include file="Includes_Views.xml"/>
+	<include file="Includes_Info.xml"/>
+	<include file="Includes_Player.xml"/>
+	<include file="Includes_Dialogs.xml"/>
+	<include file="Includes_Templates.xml"/>
+</includes>

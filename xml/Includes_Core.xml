@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Core building blocks: defaults, motion, backgrounds, text, buttons, chips. -->
+<includes>
+	<!-- ============ Control defaults ============ -->
+	<default type="label">
+		<font>Body</font>
+		<textcolor>text</textcolor>
+		<shadowcolor>clear</shadowcolor>
+		<height>40</height>
+		<aligny>center</aligny>
+	</default>
+	<default type="fadelabel">
+		<font>Body</font>
+		<textcolor>text</textcolor>
+		<scrollout>false</scrollout>
+		<pauseatend>2000</pauseatend>
+	</default>
+	<default type="textbox">
+		<font>Body</font>
+		<textcolor>text_muted</textcolor>
+	</default>
+	<!-- UI textures stretch by default; artwork sets keep/scale explicitly -->
+	<default type="image">
+		<aspectratio>stretch</aspectratio>
+	</default>
+	<default type="scrollbar">
+		<texturesliderbackground colordiffuse="clear">common/pill16.png</texturesliderbackground>
+		<texturesliderbar border="8" colordiffuse="text_faint">common/pill16.png</texturesliderbar>
+		<texturesliderbarfocus border="8" colordiffuse="text">common/pill16.png</texturesliderbarfocus>
+		<showonepage>false</showonepage>
+		<width>8</width>
+	</default>
+	<default type="list">
+		<scrolltime tween="cubic" easing="out">220</scrolltime>
+	</default>
+	<default type="panel">
+		<scrolltime tween="cubic" easing="out">220</scrolltime>
+	</default>
+	<default type="grouplist">
+		<scrolltime tween="cubic" easing="out">220</scrolltime>
+	</default>
+
+	<!-- ============ Motion (200ms ease-out) ============ -->
+	<include name="Anim_Window">
+		<animation effect="fade" start="0" end="100" time="200" tween="cubic" easing="out">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="150" tween="cubic" easing="in">WindowClose</animation>
+	</include>
+	<include name="Anim_Dialog">
+		<animation type="WindowOpen" reversible="false">
+			<effect type="fade" start="0" end="100" time="200" tween="cubic" easing="out"/>
+			<effect type="zoom" start="96" end="100" time="220" tween="cubic" easing="out" center="auto"/>
+		</animation>
+		<animation type="WindowClose" reversible="false">
+			<effect type="fade" start="100" end="0" time="150" tween="cubic" easing="in"/>
+			<effect type="zoom" start="100" end="97" time="150" tween="cubic" easing="in" center="auto"/>
+		</animation>
+	</include>
+	<include name="Anim_Visible">
+		<animation effect="fade" time="200" tween="cubic" easing="out">VisibleChange</animation>
+	</include>
+	<include name="Anim_SlideUp">
+		<animation type="WindowOpen" reversible="false">
+			<effect type="fade" start="0" end="100" time="220" tween="cubic" easing="out"/>
+			<effect type="slide" start="0,40" end="0,0" time="260" tween="cubic" easing="out"/>
+		</animation>
+		<animation type="WindowClose" reversible="false">
+			<effect type="fade" start="100" end="0" time="160" tween="cubic" easing="in"/>
+			<effect type="slide" start="0,0" end="0,40" time="160" tween="cubic" easing="in"/>
+		</animation>
+	</include>
+	<!-- Focus scale for cards (inside focusedlayout) -->
+	<include name="Anim_CardFocus">
+		<animation effect="zoom" start="100" end="106" time="200" tween="cubic" easing="out" center="auto" reversible="false">Focus</animation>
+		<animation effect="zoom" start="106" end="100" time="160" tween="cubic" easing="out" center="auto" reversible="false">UnFocus</animation>
+	</include>
+
+	<!-- ============ Backgrounds ============ -->
+	<include name="Background_Solid">
+		<control type="image">
+			<left>0</left><top>0</top><width>1920</width><height>1080</height>
+			<texture colordiffuse="bg">common/white.png</texture>
+		</control>
+	</include>
+	<!-- Full-bleed artwork with the cinematic scrims (left, bottom, vignette). -->
+	<include name="Background_Art">
+		<param name="art"/>
+		<param name="left_scrim">true</param>
+		<param name="dim">clear</param>
+		<definition>
+			<include>Background_Solid</include>
+			<control type="image">
+				<left>0</left><top>0</top><width>1920</width><height>1080</height>
+				<aspectratio>scale</aspectratio>
+				<fadetime>400</fadetime>
+				<texture background="true">$PARAM[art]</texture>
+			</control>
+			<control type="image">
+				<left>0</left><top>0</top><width>1920</width><height>1080</height>
+				<texture colordiffuse="$PARAM[dim]">common/white.png</texture>
+			</control>
+			<control type="image">
+				<left>0</left><top>0</top><width>1300</width><height>1080</height>
+				<aspectratio>stretch</aspectratio>
+				<texture colordiffuse="bg">gradients/left.png</texture>
+				<visible>$PARAM[left_scrim]</visible>
+			</control>
+			<control type="image">
+				<left>0</left><top>380</top><width>1920</width><height>700</height>
+				<aspectratio>stretch</aspectratio>
+				<texture colordiffuse="bg">gradients/bottom.png</texture>
+			</control>
+			<control type="image">
+				<left>0</left><top>0</top><width>1920</width><height>1080</height>
+				<aspectratio>stretch</aspectratio>
+				<texture colordiffuse="CC000000">gradients/vignette.png</texture>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============ Text ============ -->
+	<!-- Clearlogo with a styled text fallback in the same box (DESIGN.md §5).
+	     li = ListItem prefix, e.g. "ListItem" or "Container(2190).ListItem". -->
+	<include name="Logo">
+		<param name="li">ListItem</param>
+		<param name="width">720</param>
+		<param name="height">220</param>
+		<param name="align">left</param>
+		<param name="aligny">bottom</param>
+		<param name="font">TitleLarge</param>
+		<definition>
+			<control type="group">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<control type="image">
+					<aspectratio align="$PARAM[align]" aligny="$PARAM[aligny]">keep</aspectratio>
+					<fadetime>200</fadetime>
+					<texture>$INFO[$PARAM[li].Art(clearlogo)]</texture>
+				</control>
+				<control type="image">
+					<aspectratio align="$PARAM[align]" aligny="$PARAM[aligny]">keep</aspectratio>
+					<fadetime>200</fadetime>
+					<texture>$INFO[$PARAM[li].Art(tvshow.clearlogo)]</texture>
+					<visible>String.IsEmpty($PARAM[li].Art(clearlogo))</visible>
+				</control>
+				<control type="textbox">
+					<height>$PARAM[height]</height>
+					<font>$PARAM[font]</font>
+					<textcolor>text</textcolor>
+					<align>$PARAM[align]</align>
+					<aligny>$PARAM[aligny]</aligny>
+					<label>[UPPERCASE]$INFO[$PARAM[li].TVShowTitle]$INFO[$PARAM[li].Title][/UPPERCASE]</label>
+					<visible>String.IsEmpty($PARAM[li].Art(clearlogo)) + String.IsEmpty($PARAM[li].Art(tvshow.clearlogo)) + String.IsEmpty($PARAM[li].TVShowTitle)</visible>
+				</control>
+				<control type="textbox">
+					<height>$PARAM[height]</height>
+					<font>$PARAM[font]</font>
+					<textcolor>text</textcolor>
+					<align>$PARAM[align]</align>
+					<aligny>$PARAM[aligny]</aligny>
+					<label>[UPPERCASE]$INFO[$PARAM[li].TVShowTitle][/UPPERCASE]</label>
+					<visible>String.IsEmpty($PARAM[li].Art(clearlogo)) + String.IsEmpty($PARAM[li].Art(tvshow.clearlogo)) + !String.IsEmpty($PARAM[li].TVShowTitle)</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- Meta line: S·E | year · runtime · cert · ★ rating · genre.  li = ListItem prefix. -->
+	<include name="MetaLine">
+		<param name="li">ListItem</param>
+		<param name="font">Meta</param>
+		<param name="color">text_muted</param>
+		<param name="height">40</param>
+		<param name="genre">true</param>
+		<definition>
+			<control type="grouplist">
+				<orientation>horizontal</orientation>
+				<height>$PARAM[height]</height>
+				<itemgap>0</itemgap>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>$INFO[$PARAM[li].Season,S,]$INFO[$PARAM[li].Episode, · E,]</label>
+					<visible>String.IsEqual($PARAM[li].DBType,episode)</visible>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>$INFO[$PARAM[li].Year]</label>
+					<visible>!String.IsEqual($PARAM[li].DBType,episode)</visible>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>$INFO[$PARAM[li].Duration(h),  ·  ,h ]$INFO[$PARAM[li].Duration(m),,m]</label>
+					<visible>!String.IsEmpty($PARAM[li].Duration) + !Integer.IsEqual($PARAM[li].Duration(h),0)</visible>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>$INFO[$PARAM[li].Duration(m),  ·  ,m]</label>
+					<visible>!String.IsEmpty($PARAM[li].Duration) + Integer.IsEqual($PARAM[li].Duration(h),0)</visible>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>$INFO[$PARAM[li].Mpaa,  ·  ,]</label>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>  ·  </label>
+					<visible>!String.IsEmpty($PARAM[li].Rating)</visible>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>IconFill32</font><textcolor>star</textcolor>
+					<label>$VAR[Icon_Star]</label>
+					<visible>!String.IsEmpty($PARAM[li].Rating)</visible>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>$INFO[$PARAM[li].Rating, ,]</label>
+				</control>
+				<control type="label">
+					<width>auto</width><height>$PARAM[height]</height>
+					<font>$PARAM[font]</font><textcolor>$PARAM[color]</textcolor>
+					<label>$INFO[$PARAM[li].Genre,  ·  ,]</label>
+					<visible>$PARAM[genre]</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============ Buttons ============ -->
+	<!-- Pill button with optional icon. Focus = solid off-white pill with dark text. -->
+	<include name="Button_Pill">
+		<param name="id"/>
+		<param name="label"/>
+		<param name="icon"></param>
+		<param name="width">auto</param>
+		<param name="height">72</param>
+		<param name="visible">true</param>
+		<param name="onclick">noop</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<font>LabelBold</font>
+				<label>$PARAM[label]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textoffsetx>36</textoffsetx>
+				<textcolor>text</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+				<texturenofocus border="24" colordiffuse="accent_soft">common/pill48.png</texturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+	<!-- Round icon button (OSD, info screen). -->
+	<include name="Button_Icon">
+		<param name="id"/>
+		<param name="icon"/>
+		<param name="size">80</param>
+		<param name="font">Icon40</param>
+		<param name="visible">true</param>
+		<param name="onclick">noop</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[size]</width>
+				<height>$PARAM[size]</height>
+				<font>$PARAM[font]</font>
+				<label>$PARAM[icon]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textoffsetx>0</textoffsetx>
+				<textcolor>text</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<texturefocus colordiffuse="focus_fill">common/circle.png</texturefocus>
+				<texturenofocus colordiffuse="accent_soft">common/circle.png</texturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============ Chips (media flags) ============ -->
+	<include name="Chip">
+		<param name="label"/>
+		<param name="visible">true</param>
+		<definition>
+			<control type="button">
+				<width>auto</width>
+				<height>40</height>
+				<font>CaptionCaps</font>
+				<label>$PARAM[label]</label>
+				<textoffsetx>14</textoffsetx>
+				<aligny>center</aligny>
+				<enable>false</enable>
+				<disabledcolor>text</disabledcolor>
+				<texturenofocus border="8" colordiffuse="hairline">common/r8.png</texturenofocus>
+				<texturefocus border="8" colordiffuse="hairline">common/r8.png</texturefocus>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="MediaFlags">
+		<control type="grouplist">
+			<orientation>horizontal</orientation>
+			<height>40</height>
+			<itemgap>10</itemgap>
+			<include content="Chip"><param name="label" value="$VAR[Flag_Resolution]"/><param name="visible" value="!String.IsEmpty(ListItem.VideoResolution)"/></include>
+			<include content="Chip"><param name="label" value="$VAR[Flag_HDR]"/><param name="visible" value="!String.IsEmpty(ListItem.HdrType)"/></include>
+			<include content="Chip"><param name="label" value="$VAR[Flag_Audio]"/><param name="visible" value="!String.IsEmpty(ListItem.AudioCodec)"/></include>
+			<include content="Chip"><param name="label" value="$VAR[Flag_Channels]"/><param name="visible" value="!String.IsEmpty(ListItem.AudioChannels)"/></include>
+			<include content="Chip"><param name="label" value="CC"/><param name="visible" value="!String.IsEmpty(ListItem.SubtitleLanguage)"/></include>
+		</control>
+	</include>
+
+	<!-- ============ Chrome ============ -->
+	<include name="Clock">
+		<control type="label">
+			<right>96</right>
+			<top>44</top>
+			<width>400</width>
+			<height>56</height>
+			<align>right</align>
+			<font>Clock</font>
+			<textcolor>text</textcolor>
+			<label>$INFO[System.Time]</label>
+		</control>
+	</include>
+	<!-- Glass panel behind overlays -->
+	<include name="Panel_Glass">
+		<param name="color">glass_strong</param>
+		<definition>
+			<control type="image">
+				<left>-40</left><top>-40</top><right>-40</right><bottom>-40</bottom>
+				<texture border="40" colordiffuse="shadow">common/shadow.png</texture>
+			</control>
+			<control type="image">
+				<texture border="14" colordiffuse="$PARAM[color]">common/r14.png</texture>
+			</control>
+		</definition>
+	</include>
+	<include name="BusySpinner">
+		<param name="visible">false</param>
+		<definition>
+			<control type="label">
+				<width>60</width><height>60</height>
+				<font>Icon40</font>
+				<align>center</align>
+				<textcolor>text_muted</textcolor>
+				<label>$VAR[Icon_Sync]</label>
+				<animation effect="rotate" end="-360" center="auto" time="1200" loop="true" condition="true">Conditional</animation>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+</includes>

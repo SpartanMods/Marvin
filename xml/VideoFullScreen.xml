@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fullscreen video: only the pause screen lives here; Kodi renders the video. -->
+<window>
+	<controls>
+		<include>Player_Pause</include>
+	</controls>
+</window>

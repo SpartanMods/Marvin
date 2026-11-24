@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Playback (DESIGN.md §9), three tiers:
+	  1. seek   -> DialogSeekBar: thin bar, times, ends-at, chapter ticks
+	  2. pause  -> VideoFullScreen: dimmed frame, logo, episode line, plot, bar
+	  3. OSD    -> VideoOSD: bar + minimal icon row; Audio & Subtitles first (1101)
+-->
+<includes>
+	<!-- ============ Seek bar ============ -->
+	<include name="Player_SeekBar">
+		<param name="top">940</param>
+		<definition>
+			<control type="image">
+				<left>0</left><top>620</top><width>1920</width><height>460</height>
+				<texture colordiffuse="E6000000">gradients/bottom-soft.png</texture>
+			</control>
+			<control type="group">
+				<left>96</left>
+				<top>$PARAM[top]</top>
+				<width>1728</width>
+				<!-- seek target -->
+				<control type="label">
+					<top>-64</top><width>1728</width><height>44</height>
+					<font>Title</font>
+					<label>$INFO[Player.SeekTime]$INFO[Player.SeekOffset,   ,]</label>
+					<visible>Player.Seeking | Player.HasPerformedSeek(2) | !String.IsEmpty(Player.SeekNumeric)</visible>
+				</control>
+				<control type="progress">
+					<top>0</top><width>1728</width><height>8</height>
+					<texturebg border="4" colordiffuse="progress_track">common/pill16.png</texturebg>
+					<midtexture border="4" colordiffuse="accent_soft">common/pill16.png</midtexture>
+					<info>Player.ProgressCache</info>
+				</control>
+				<control type="progress">
+					<top>0</top><width>1728</width><height>8</height>
+					<texturebg border="4" colordiffuse="clear">common/pill16.png</texturebg>
+					<midtexture border="4" colordiffuse="progress_fill">common/pill16.png</midtexture>
+					<info>Player.Progress</info>
+				</control>
+				<control type="ranges">
+					<top>-4</top><width>1728</width><height>16</height>
+					<texturebg colordiffuse="clear">common/white.png</texturebg>
+					<righttexture colordiffuse="B3000000">common/tick.png</righttexture>
+					<info>Player.Chapters</info>
+				</control>
+				<control type="slider">
+					<top>-8</top><width>1728</width><height>24</height>
+					<texturesliderbar colordiffuse="clear">common/white.png</texturesliderbar>
+					<textureslidernib colordiffuse="text">common/nib.png</textureslidernib>
+					<textureslidernibfocus colordiffuse="text">common/nib.png</textureslidernibfocus>
+					<info>Player.SeekBar</info>
+					<visible>Player.Seeking | Player.HasPerformedSeek(2)</visible>
+				</control>
+				<control type="label">
+					<top>24</top><width>600</width><height>40</height>
+					<font>Mono</font>
+					<label>$INFO[Player.Time]</label>
+				</control>
+				<control type="label">
+					<top>24</top><width>1728</width><height>40</height>
+					<align>right</align>
+					<font>Mono</font>
+					<textcolor>text_muted</textcolor>
+					<label>$INFO[Player.FinishTime,$LOCALIZE[31130] ,   ]$INFO[Player.TimeRemaining,-,]</label>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============ Title block (pause screen + OSD) ============ -->
+	<include name="Player_TitleBlock">
+		<param name="plot">true</param>
+		<definition>
+			<control type="group">
+				<include content="Logo">
+					<param name="li" value="VideoPlayer"/>
+					<param name="width" value="640"/>
+					<param name="height" value="160"/>
+					<param name="font" value="TitleLarge"/>
+				</include>
+			</control>
+			<control type="label">
+				<top>172</top>
+				<width>1300</width>
+				<height>44</height>
+				<font>Label</font>
+				<textcolor>text_muted</textcolor>
+				<label>$VAR[Player_Subtitle]</label>
+			</control>
+			<control type="textbox">
+				<top>224</top>
+				<width>1000</width>
+				<height>132</height>
+				<label>$INFO[VideoPlayer.Plot]</label>
+				<visible>$PARAM[plot]</visible>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============ Pause screen ============ -->
+	<include name="Player_Pause">
+		<control type="group">
+			<visible>$EXP[Player_PauseScreen]</visible>
+			<animation effect="fade" start="0" end="100" time="400" delay="300" tween="cubic" easing="out">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="150">Hidden</animation>
+			<control type="image">
+				<left>0</left><top>0</top><width>1920</width><height>1080</height>
+				<texture colordiffuse="99000000">common/white.png</texture>
+			</control>
+			<control type="image">
+				<left>0</left><top>0</top><width>1300</width><height>1080</height>
+				<texture colordiffuse="CC000000">gradients/left.png</texture>
+			</control>
+			<control type="group">
+				<left>96</left>
+				<top>480</top>
+				<include>Player_TitleBlock</include>
+			</control>
+			<include>Player_SeekBar</include>
+			<control type="label">
+				<left>96</left><top>44</top><width>600</width><height>56</height>
+				<font>LabelBold</font>
+				<textcolor>text_muted</textcolor>
+				<label>[UPPERCASE]$LOCALIZE[112][/UPPERCASE]</label>
+			</control>
+			<include>Clock</include>
+		</control>
+	</include>
+
+	<!-- ============ OSD ============ -->
+	<include name="OSD_IconButton">
+		<param name="id"/>
+		<param name="icon"/>
+		<param name="label"/>
+		<param name="onclick"/>
+		<param name="visible">true</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>84</width>
+				<height>84</height>
+				<font>Icon40</font>
+				<label>$PARAM[icon]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textoffsetx>0</textoffsetx>
+				<textcolor>text</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<texturefocus colordiffuse="focus_fill">common/circle.png</texturefocus>
+				<texturenofocus colordiffuse="accent_soft">common/circle.png</texturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============ Audio & Subtitles rows ============ -->
+	<include name="AS_Row">
+		<param name="id"/>
+		<param name="label"/>
+		<param name="value"></param>
+		<param name="onclick"/>
+		<param name="visible">true</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>620</width>
+				<height>72</height>
+				<font>Label</font>
+				<label>$PARAM[label]</label>
+				<label2>$PARAM[value]</label2>
+				<textoffsetx>28</textoffsetx>
+				<textcolor>text</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+				<texturenofocus border="24" colordiffuse="clear">common/pill48.png</texturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+</includes>

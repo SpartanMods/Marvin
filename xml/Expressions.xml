@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Expressions: the ONLY place optional add-ons are detected, and the home for
+	reusable state checks. Window XML must use $EXP[...] rather than repeating
+	System.AddonIsEnabled(...) anywhere else.
+-->
+<includes>
+	<!-- Optional integrations (never required) -->
+	<expression name="Has_TMDbHelper">System.AddonIsEnabled(plugin.video.themoviedb.helper)</expression>
+	<expression name="Has_UpNext">System.AddonIsEnabled(service.upnext)</expression>
+	<expression name="Has_SubtitleAddon">System.AddonIsEnabled(service.subtitles.opensubtitles-com) | System.AddonIsEnabled(service.subtitles.a4ksubtitles) | System.AddonIsEnabled(service.subtitles.subdl) | System.AddonIsEnabled(service.subtitles.opensubtitles) | System.AddonIsEnabled(service.subtitles.subscene)</expression>
+
+	<!-- Home layout (Skin.String(Home.Layout)); appletv is the default -->
+	<expression name="Layout_AppleTV">String.IsEmpty(Skin.String(Home.Layout)) | String.IsEqual(Skin.String(Home.Layout),appletv)</expression>
+	<expression name="Layout_Netflix">String.IsEqual(Skin.String(Home.Layout),netflix)</expression>
+
+	<!-- Home state -->
+	<expression name="Home_IsMovies">String.IsEqual(Window(Home).Property(Home.Section),movies) | String.IsEmpty(Window(Home).Property(Home.Section))</expression>
+	<expression name="Home_IsTV">String.IsEqual(Window(Home).Property(Home.Section),tvshows)</expression>
+	<expression name="Home_RowsFocused">ControlGroup(2000).HasFocus</expression>
+	<!-- "Deep" = focus is on a row below the first visible one; the hero compacts -->
+	<expression name="Home_Deep">ControlGroup(2000).HasFocus + !Control.HasFocus(2101) + !Control.HasFocus(2201) + ![Control.HasFocus(2102) + !Control.IsVisible(2101)] + ![Control.HasFocus(2202) + !Control.IsVisible(2201)]</expression>
+
+	<!-- Content -->
+	<expression name="Content_Playable">Container.Content(movies) | Container.Content(episodes) | Container.Content(musicvideos)</expression>
+	<expression name="Content_Library">Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets)</expression>
+	<expression name="Content_PosterWall">Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets)</expression>
+	<expression name="Content_Episodic">Container.Content(seasons) | Container.Content(episodes)</expression>
+
+	<!-- Player -->
+	<expression name="Player_OSDVisible">Window.IsVisible(videoosd) | Window.IsVisible(1101)</expression>
+	<expression name="Player_PauseScreen">Player.Paused + !Player.Seeking + !Player.Forwarding + !Player.Rewinding + !$EXP[Player_OSDVisible] + !Window.IsVisible(fullscreeninfo) + !Window.IsVisible(playerprocessinfo)</expression>
+</includes>

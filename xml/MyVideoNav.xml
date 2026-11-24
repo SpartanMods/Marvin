@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<backgroundcolor>bg</backgroundcolor>
+	<views>50,53,54,52</views>
+	<include>Anim_Window</include>
+	<controls>
+		<include content="Background_Art">
+			<param name="art" value="$VAR[View_Background]"/>
+			<param name="dim" value="dim_view"/>
+		</include>
+		<include>View_Header</include>
+		<include>View_50_PosterWall</include>
+		<include>View_53_Episodes</include>
+		<include>View_52_List</include>
+	</controls>
+</window>

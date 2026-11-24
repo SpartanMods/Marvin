@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Home: shared content and logic. Positions live in Includes_Home_<layout>.xml.
+	IDs: 9000 menu, 900x menu buttons, 2000 rows, 21xx movie rows, 22xx TV rows,
+	2190/2290 spotlight lists (off-screen, feed the hero while the menu has focus).
+	Widget slots are Skin.String(Widget.<Section>.<n>.Path|Label|Style); defaults are
+	written once by Startup.xml (Action_WidgetDefaults).
+-->
+<includes>
+	<!-- ============ Hero source selection ============ -->
+	<variable name="Home_HeroFanart">
+		<value condition="$EXP[Home_RowsFocused] + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="$EXP[Home_RowsFocused]">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value condition="$EXP[Home_IsTV]">$INFO[Container(2290).ListItem.Art(fanart)]</value>
+		<value>$INFO[Container(2190).ListItem.Art(fanart)]</value>
+	</variable>
+
+	<include name="Home_Background">
+		<include content="Background_Art">
+			<param name="art" value="$VAR[Home_HeroFanart]"/>
+		</include>
+	</include>
+
+	<!-- One hero block per source; only one is visible at a time. -->
+	<include name="Home_HeroBlock">
+		<param name="li"/>
+		<param name="visible"/>
+		<definition>
+			<control type="group">
+				<visible>$PARAM[visible]</visible>
+				<include>Anim_Visible</include>
+				<control type="group">
+					<include content="Logo">
+						<param name="li" value="$PARAM[li]"/>
+						<param name="width" value="720"/>
+						<param name="height" value="200"/>
+						<param name="font" value="Hero"/>
+					</include>
+				</control>
+				<control type="group">
+					<top>216</top>
+					<include content="MetaLine">
+						<param name="li" value="$PARAM[li]"/>
+					</include>
+				</control>
+				<control type="textbox">
+					<top>270</top>
+					<width>960</width>
+					<height>132</height>
+					<font>Body</font>
+					<textcolor>text_muted</textcolor>
+					<label>$INFO[$PARAM[li].Plot]</label>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<include name="Home_Hero">
+		<control type="group">
+			<include>Home_Geometry_Hero</include>
+			<control type="group">
+			<visible>!$EXP[Home_Deep]</visible>
+			<include>Anim_Visible</include>
+			<include content="Home_HeroBlock">
+				<param name="li" value="ListItem"/>
+				<param name="visible" value="$EXP[Home_RowsFocused]"/>
+			</include>
+			<include content="Home_HeroBlock">
+				<param name="li" value="Container(2190).ListItem"/>
+				<param name="visible" value="!$EXP[Home_RowsFocused] + $EXP[Home_IsMovies]"/>
+			</include>
+			<include content="Home_HeroBlock">
+				<param name="li" value="Container(2290).ListItem"/>
+				<param name="visible" value="!$EXP[Home_RowsFocused] + $EXP[Home_IsTV]"/>
+			</include>
+			</control>
+		</control>
+		<control type="group">
+			<include>Home_Geometry_HeroCompact</include>
+			<visible>$EXP[Home_Deep]</visible>
+			<include>Anim_Visible</include>
+			<include content="Logo">
+				<param name="width" value="520"/>
+				<param name="height" value="96"/>
+				<param name="font" value="Title"/>
+			</include>
+			<control type="group">
+				<top>104</top>
+				<include content="MetaLine"/>
+			</control>
+		</control>
+	</include>
+
+	<!-- Off-screen, auto-advancing lists that pick the featured title per section -->
+	<include name="Home_Spotlight">
+		<param name="id"/>
+		<param name="path"/>
+		<definition>
+			<control type="list" id="$PARAM[id]">
+				<left>-4000</left><top>0</top><width>10</width><height>10</height>
+				<orientation>horizontal</orientation>
+				<autoscroll time="9000">!ControlGroup(2000).HasFocus</autoscroll>
+				<itemlayout width="10" height="10"/>
+				<focusedlayout width="10" height="10"/>
+				<content target="videos" sortby="random" limit="12">$PARAM[path]</content>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============ Menu ============ -->
+	<variable name="Home_MenuText_movies">
+		<value condition="$EXP[Home_IsMovies]">text</value>
+		<value>text_muted</value>
+	</variable>
+	<variable name="Home_MenuText_tvshows">
+		<value condition="$EXP[Home_IsTV]">text</value>
+		<value>text_muted</value>
+	</variable>
+	<variable name="Home_MenuText_none"><value>text_muted</value></variable>
+	<variable name="Home_MenuPill_movies">
+		<value condition="$EXP[Home_IsMovies]">accent_soft</value>
+		<value>clear</value>
+	</variable>
+	<variable name="Home_MenuPill_tvshows">
+		<value condition="$EXP[Home_IsTV]">accent_soft</value>
+		<value>clear</value>
+	</variable>
+	<variable name="Home_MenuPill_none"><value>clear</value></variable>
+
+	<include name="Home_MenuButton">
+		<param name="id"/>
+		<param name="label"/>
+		<param name="section">none</param>
+		<param name="onfocus">noop</param>
+		<param name="onclick"/>
+		<param name="font">Menu</param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>auto</width>
+				<height>60</height>
+				<font>$PARAM[font]</font>
+				<label>$PARAM[label]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textoffsetx>28</textoffsetx>
+				<textcolor>$VAR[Home_MenuText_$PARAM[section]]</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+				<texturenofocus border="24" colordiffuse="$VAR[Home_MenuPill_$PARAM[section]]">common/pill48.png</texturenofocus>
+				<onfocus>$PARAM[onfocus]</onfocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+
+	<include name="Home_Menu">
+		<control type="grouplist" id="9000">
+			<include>Home_Geometry_Menu</include>
+			<ondown>2000</ondown>
+			<include content="Home_MenuButton">
+				<param name="id" value="9001"/>
+				<param name="label" value="$LOCALIZE[342]"/>
+				<param name="section" value="movies"/>
+				<param name="onfocus" value="SetProperty(Home.Section,movies,home)"/>
+				<param name="onclick" value="ActivateWindow(Videos,videodb://movies/titles/,return)"/>
+				<param name="visible" value="!Skin.HasSetting(Home.HideMovies)"/>
+			</include>
+			<include content="Home_MenuButton">
+				<param name="id" value="9002"/>
+				<param name="label" value="$LOCALIZE[20343]"/>
+				<param name="section" value="tvshows"/>
+				<param name="onfocus" value="SetProperty(Home.Section,tvshows,home)"/>
+				<param name="onclick" value="ActivateWindow(Videos,videodb://tvshows/titles/,return)"/>
+				<param name="visible" value="!Skin.HasSetting(Home.HideTV)"/>
+			</include>
+			<include content="Home_MenuButton">
+				<param name="id" value="9003"/>
+				<param name="label" value="$LOCALIZE[1036]"/>
+				<param name="onclick" value="ActivateWindow(favouritesbrowser)"/>
+				<param name="visible" value="!Skin.HasSetting(Home.HideFavourites)"/>
+			</include>
+			<include content="Home_MenuButton">
+				<param name="id" value="9004"/>
+				<param name="label" value="$LOCALIZE[5]"/>
+				<param name="onclick" value="ActivateWindow(Settings)"/>
+			</include>
+			<include content="Home_MenuButton">
+				<param name="id" value="9005"/>
+				<param name="label" value="$VAR[Icon_Power]"/>
+				<param name="font" value="Icon32"/>
+				<param name="onclick" value="ActivateWindow(ShutdownMenu)"/>
+			</include>
+		</control>
+	</include>
+
+	<!-- ============ Rows ============ -->
+	<include name="Home_RowFrame">
+		<param name="id"/>
+		<param name="key"/>
+		<param name="section"/>
+		<definition>
+			<height>400</height>
+			<visible>$PARAM[section] + !String.IsEmpty(Skin.String(Widget.$PARAM[key].Path)) + [Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating]</visible>
+			<control type="label">
+				<left>96</left><top>0</top><width>1200</width><height>40</height>
+				<font>LabelBold</font>
+				<textcolor>text</textcolor>
+				<label>$INFO[Skin.String(Widget.$PARAM[key].Label)]</label>
+			</control>
+		</definition>
+	</include>
+	<include name="Home_RowListCommon">
+		<param name="id"/>
+		<param name="key"/>
+		<param name="up"/>
+		<param name="down"/>
+		<definition>
+			<left>56</left>
+			<top>12</top>
+			<width>1864</width>
+			<orientation>horizontal</orientation>
+			<preloaditems>2</preloaditems>
+			<onup>$PARAM[up]</onup>
+			<ondown>$PARAM[down]</ondown>
+			<onclick condition="!Container($PARAM[id]).ListItem.IsFolder">Action(Info)</onclick>
+			<content target="videos" limit="30">$INFO[Skin.String(Widget.$PARAM[key].Path)]</content>
+		</definition>
+	</include>
+	<include name="Home_Row">
+		<param name="id"/>
+		<param name="key"/>
+		<param name="section"/>
+		<param name="up"/>
+		<param name="down"/>
+		<definition>
+			<control type="group">
+				<include content="Home_RowFrame">
+					<param name="id" value="$PARAM[id]"/><param name="key" value="$PARAM[key]"/><param name="section" value="$PARAM[section]"/>
+				</include>
+				<control type="list" id="$PARAM[id]">
+					<height>380</height>
+					<include content="Home_RowListCommon">
+						<param name="id" value="$PARAM[id]"/><param name="key" value="$PARAM[key]"/><param name="up" value="$PARAM[up]"/><param name="down" value="$PARAM[down]"/>
+					</include>
+					<include content="Layouts_Poster" condition="!String.IsEqual(Skin.String(Widget.$PARAM[key].Style),landscape)">
+						<param name="id" value="$PARAM[id]"/>
+						<param name="w" value="200"/><param name="h" value="300"/>
+						<param name="cellw" value="228"/><param name="cellh" value="380"/>
+						<param name="pad" value="40"/>
+					</include>
+					<include content="Layouts_Landscape" condition="String.IsEqual(Skin.String(Widget.$PARAM[key].Style),landscape)">
+						<param name="id" value="$PARAM[id]"/>
+						<param name="w" value="384"/><param name="h" value="216"/>
+						<param name="cellw" value="412"/><param name="cellh" value="380"/>
+						<param name="pad" value="40"/>
+					</include>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<include name="Home_Rows">
+		<control type="grouplist" id="2000">
+			<include>Home_Geometry_Rows</include>
+			<onup>9000</onup>
+			<!-- Movies -->
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2101"/><param name="up" value="9000"/><param name="down" value="2102"/><param name="key" value="Movies.1"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2102"/><param name="up" value="2101"/><param name="down" value="2103"/><param name="key" value="Movies.2"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2103"/><param name="up" value="2102"/><param name="down" value="2104"/><param name="key" value="Movies.3"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2104"/><param name="up" value="2103"/><param name="down" value="2105"/><param name="key" value="Movies.4"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2105"/><param name="up" value="2104"/><param name="down" value="2106"/><param name="key" value="Movies.5"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2106"/><param name="up" value="2105"/><param name="down" value="2107"/><param name="key" value="Movies.6"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2107"/><param name="up" value="2106"/><param name="down" value="2108"/><param name="key" value="Movies.7"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsMovies]"/><param name="id" value="2108"/><param name="up" value="2107"/><param name="down" value="2108"/><param name="key" value="Movies.8"/></include>
+			<!-- TV -->
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2201"/><param name="up" value="9000"/><param name="down" value="2202"/><param name="key" value="TV.1"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2202"/><param name="up" value="2201"/><param name="down" value="2203"/><param name="key" value="TV.2"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2203"/><param name="up" value="2202"/><param name="down" value="2204"/><param name="key" value="TV.3"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2204"/><param name="up" value="2203"/><param name="down" value="2205"/><param name="key" value="TV.4"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2205"/><param name="up" value="2204"/><param name="down" value="2206"/><param name="key" value="TV.5"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2206"/><param name="up" value="2205"/><param name="down" value="2207"/><param name="key" value="TV.6"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2207"/><param name="up" value="2206"/><param name="down" value="2208"/><param name="key" value="TV.7"/></include>
+			<include content="Home_Row"><param name="section" value="$EXP[Home_IsTV]"/><param name="id" value="2208"/><param name="up" value="2207"/><param name="down" value="2208"/><param name="key" value="TV.8"/></include>
+		</control>
+	</include>
+
+	<!-- ============ Widget defaults (run from Startup.xml; also "reset" in settings) ============ -->
+	<include name="Widget_Default">
+		<param name="key"/>
+		<param name="label"/>
+		<param name="path"/>
+		<param name="style">poster</param>
+		<definition>
+			<onload condition="!Skin.HasSetting(Widgets.Initialised)">Skin.SetString(Widget.$PARAM[key].Label,$PARAM[label])</onload>
+			<onload condition="!Skin.HasSetting(Widgets.Initialised)">Skin.SetString(Widget.$PARAM[key].Path,$PARAM[path])</onload>
+			<onload condition="!Skin.HasSetting(Widgets.Initialised)">Skin.SetString(Widget.$PARAM[key].Style,$PARAM[style])</onload>
+		</definition>
+	</include>
+	<include name="Action_WidgetDefaults">
+		<include content="Widget_Default"><param name="key" value="Movies.1"/><param name="label" value="$LOCALIZE[31010]"/><param name="path" value="special://skin/extras/playlists/InProgressMovies.xsp"/><param name="style" value="landscape"/></include>
+		<include content="Widget_Default"><param name="key" value="Movies.2"/><param name="label" value="$LOCALIZE[31011]"/><param name="path" value="videodb://recentlyaddedmovies/"/></include>
+		<include content="Widget_Default"><param name="key" value="Movies.3"/><param name="label" value="$LOCALIZE[31012]"/><param name="path" value="special://skin/extras/playlists/UnwatchedMovies.xsp"/></include>
+		<include content="Widget_Default"><param name="key" value="Movies.4"/><param name="label" value="$LOCALIZE[31013]"/><param name="path" value="special://skin/extras/playlists/TopRatedMovies.xsp"/></include>
+		<include content="Widget_Default"><param name="key" value="Movies.5"/><param name="label" value="$LOCALIZE[31014]"/><param name="path" value="videodb://movies/sets/"/><param name="style" value="landscape"/></include>
+		<include content="Widget_Default"><param name="key" value="TV.1"/><param name="label" value="$LOCALIZE[31010]"/><param name="path" value="special://skin/extras/playlists/InProgressEpisodes.xsp"/><param name="style" value="landscape"/></include>
+		<include content="Widget_Default"><param name="key" value="TV.2"/><param name="label" value="$LOCALIZE[31015]"/><param name="path" value="videodb://inprogresstvshows/"/></include>
+		<include content="Widget_Default"><param name="key" value="TV.3"/><param name="label" value="$LOCALIZE[31016]"/><param name="path" value="videodb://recentlyaddedepisodes/"/><param name="style" value="landscape"/></include>
+		<include content="Widget_Default"><param name="key" value="TV.4"/><param name="label" value="$LOCALIZE[31017]"/><param name="path" value="special://skin/extras/playlists/UnwatchedShows.xsp"/></include>
+		<include content="Widget_Default"><param name="key" value="TV.5"/><param name="label" value="$LOCALIZE[31018]"/><param name="path" value="videodb://tvshows/titles/"/></include>
+		<onload>Skin.SetBool(Widgets.Initialised)</onload>
+	</include>
+</includes>

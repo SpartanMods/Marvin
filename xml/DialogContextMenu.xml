@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi clones button 1000 into grouplist 996 and sizes background 999 -->
+<window>
+	<defaultcontrol>996</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<coordinates>
+		<left>660</left>
+		<top>200</top>
+	</coordinates>
+	<controls>
+		<control type="image" id="999">
+			<left>-24</left><top>-24</top><width>648</width><height>200</height>
+			<texture border="14" colordiffuse="glass_strong">common/r14.png</texture>
+		</control>
+		<control type="grouplist" id="996">
+			<left>0</left><top>0</top><width>600</width><height>700</height>
+			<itemgap>4</itemgap>
+		</control>
+		<control type="button" id="1000">
+			<width>600</width>
+			<height>68</height>
+			<font>Label</font>
+			<textoffsetx>28</textoffsetx>
+			<textcolor>text</textcolor>
+			<focusedcolor>text_dark</focusedcolor>
+			<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+			<texturenofocus border="24" colordiffuse="clear">common/pill48.png</texturenofocus>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<backgroundcolor>bg</backgroundcolor>
+	<onload condition="String.IsEmpty(Window(Home).Property(Home.Section))">SetProperty(Home.Section,movies,home)</onload>
+	<controls>
+		<include>Home_Background</include>
+		<include content="Home_Spotlight"><param name="id" value="2190"/><param name="path" value="videodb://movies/titles/"/></include>
+		<include content="Home_Spotlight"><param name="id" value="2290"/><param name="path" value="videodb://tvshows/titles/"/></include>
+		<include>Home_Hero</include>
+		<include>Home_Rows</include>
+		<include>Home_Menu</include>
+		<include>Clock</include>
+	</controls>
+</window>

@@ -1,0 +1,124 @@
+# Marvin skin strings
+msgid ""
+msgstr ""
+"Project-Id-Version: skin.marvin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+
+msgctxt "#31010"
+msgid "Continue Watching"
+msgstr ""
+
+msgctxt "#31011"
+msgid "Recently Added"
+msgstr ""
+
+msgctxt "#31012"
+msgid "Unwatched"
+msgstr ""
+
+msgctxt "#31013"
+msgid "Top Rated"
+msgstr ""
+
+msgctxt "#31014"
+msgid "Collections"
+msgstr ""
+
+msgctxt "#31015"
+msgid "Shows in Progress"
+msgstr ""
+
+msgctxt "#31016"
+msgid "New Episodes"
+msgstr ""
+
+msgctxt "#31017"
+msgid "Unwatched Shows"
+msgstr ""
+
+msgctxt "#31018"
+msgid "All Shows"
+msgstr ""
+
+msgctxt "#31120"
+msgid "On"
+msgstr ""
+
+msgctxt "#31100"
+msgid "Poster Wall"
+msgstr ""
+
+msgctxt "#31101"
+msgid "Episode List"
+msgstr ""
+
+msgctxt "#31102"
+msgid "List"
+msgstr ""
+
+msgctxt "#31121"
+msgid "Resume"
+msgstr ""
+
+msgctxt "#31122"
+msgid "Episodes"
+msgstr ""
+
+msgctxt "#31123"
+msgid "More"
+msgstr ""
+
+msgctxt "#31124"
+msgid "watched"
+msgstr ""
+
+msgctxt "#31125"
+msgid "Play from start"
+msgstr ""
+
+msgctxt "#31130"
+msgid "Ends at"
+msgstr ""
+
+msgctxt "#31131"
+msgid "Audio & Subtitles"
+msgstr ""
+
+msgctxt "#31132"
+msgid "Track"
+msgstr ""
+
+msgctxt "#31133"
+msgid "All audio settings"
+msgstr ""
+
+msgctxt "#31134"
+msgid "Subtitles"
+msgstr ""
+
+msgctxt "#31135"
+msgid "Download subtitles"
+msgstr ""
+
+msgctxt "#31136"
+msgid "All subtitle settings"
+msgstr ""
+
+msgctxt "#31137"
+msgid "Chapters & bookmarks"
+msgstr ""
+
+msgctxt "#31138"
+msgid "Video settings"
+msgstr ""
+
+msgctxt "#31139"
+msgid "Stop"
+msgstr ""
+
+msgctxt "#31140"
+msgid "Next"
+msgstr ""

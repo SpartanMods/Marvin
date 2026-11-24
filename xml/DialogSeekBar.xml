@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 1 of playback: a thin seekbar while seeking (DESIGN.md §9) -->
+<window>
+	<include>Anim_Window</include>
+	<visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Forwarding | Player.Rewinding | [Player.Paused + !$EXP[Player_PauseScreen]]</visible>
+	<visible>!Window.IsVisible(videoosd) + !Window.IsVisible(1101) + Player.HasVideo</visible>
+	<controls>
+		<include>Player_SeekBar</include>
+	</controls>
+</window>

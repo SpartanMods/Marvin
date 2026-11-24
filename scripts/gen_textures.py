@@ -100,6 +100,8 @@ def main():
     rounded(16, 16, 8, "common/pill16.png")        # border="8" (thin bars)
     ring(64, 64, 14, 3, "common/r14-ring.png")     # focus ring, border="14"
     circle(128, "common/circle.png")
+    circle(24, "common/nib.png")  # seek/slider nib (drawn at native size)
+    Image.new("RGBA", (4, 32), (255, 255, 255, 255)).save(out("common/tick.png"))  # chapter marks
 
     # Focus glow + drop shadow (9-slice: border = 40)
     glow(64, 14, 40, 14, "common/glow.png", 0.9)

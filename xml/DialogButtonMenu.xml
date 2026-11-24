@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Power menu -->
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<include content="Dialog_Frame"><param name="w" value="640"/><param name="h" value="560"/><param name="header" value="$LOCALIZE[13012]"/></include>
+			<control type="list" id="9000">
+				<left>40</left><top>110</top><width>560</width><height>420</height>
+				<include content="Dialog_ListLayouts"><param name="id" value="9000"/><param name="w" value="560"/><param name="lw" value="500"/><param name="label2" value="false"/></include>
+				<content>
+					<item><label>$LOCALIZE[13009]</label><onclick>Quit()</onclick><visible>System.ShowExitButton</visible></item>
+					<item><label>$LOCALIZE[13016]</label><onclick>Powerdown()</onclick><visible>System.CanPowerDown</visible></item>
+					<item><label>$LOCALIZE[13013]</label><onclick>Reboot()</onclick><visible>System.CanReboot</visible></item>
+					<item><label>$LOCALIZE[13011]</label><onclick>Suspend()</onclick><visible>System.CanSuspend</visible></item>
+					<item><label>$LOCALIZE[13014]</label><onclick>Minimize()</onclick></item>
+					<item><label>$LOCALIZE[20126]</label><onclick>System.LogOff</onclick><visible>System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)</visible></item>
+				</content>
+			</control>
+		</control>
+	</controls>
+</window>

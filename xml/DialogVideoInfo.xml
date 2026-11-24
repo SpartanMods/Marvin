@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include content="Background_Art">
+			<param name="art" value="$VAR[Art_Fanart]"/>
+		</include>
+		<control type="image">
+			<left>0</left><top>0</top><width>1920</width><height>1080</height>
+			<texture colordiffuse="dim_view">common/white.png</texture>
+			<include>Anim_Visible</include>
+			<visible>$EXP[Info_Rows]</visible>
+		</control>
+		<include>Info_Hero</include>
+		<include>Info_Buttons</include>
+		<include>Info_Rows</include>
+		<include>Clock</include>
+	</controls>
+</window>

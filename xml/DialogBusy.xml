@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<include>Anim_Window</include>
+	<controls>
+		<control type="group">
+			<right>96</right><bottom>80</bottom><width>60</width><height>60</height>
+			<include content="BusySpinner"><param name="visible" value="true"/></include>
+		</control>
+	</controls>
+</window>
