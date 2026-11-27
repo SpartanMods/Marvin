@@ -99,20 +99,20 @@
 				<texture colordiffuse="$PARAM[dim]">common/white.png</texture>
 			</control>
 			<control type="image">
-				<left>0</left><top>0</top><width>1300</width><height>1080</height>
+				<left>0</left><top>0</top><width>1150</width><height>1080</height>
 				<aspectratio>stretch</aspectratio>
-				<texture colordiffuse="bg">gradients/left.png</texture>
+				<texture colordiffuse="scrim_side">gradients/left.png</texture>
 				<visible>$PARAM[left_scrim]</visible>
 			</control>
 			<control type="image">
-				<left>0</left><top>380</top><width>1920</width><height>700</height>
+				<left>0</left><top>500</top><width>1920</width><height>580</height>
 				<aspectratio>stretch</aspectratio>
-				<texture colordiffuse="bg">gradients/bottom.png</texture>
+				<texture colordiffuse="scrim_bottom">gradients/bottom.png</texture>
 			</control>
 			<control type="image">
 				<left>0</left><top>0</top><width>1920</width><height>1080</height>
 				<aspectratio>stretch</aspectratio>
-				<texture colordiffuse="CC000000">gradients/vignette.png</texture>
+				<texture colordiffuse="80000000">gradients/vignette.png</texture>
 			</control>
 		</definition>
 	</include>

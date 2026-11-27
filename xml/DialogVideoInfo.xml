@@ -2,6 +2,9 @@
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<include>Anim_Window</include>
+	<onload>ClearProperty(Marvin.WatchedOverride,home)</onload>
+	<onunload condition="!String.IsEmpty(Window(Home).Property(Marvin.WatchedOverride))">Container.Refresh</onunload>
+	<onunload>ClearProperty(Marvin.WatchedOverride,home)</onunload>
 	<controls>
 		<include content="Background_Art">
 			<param name="art" value="$VAR[Art_Fanart]"/>

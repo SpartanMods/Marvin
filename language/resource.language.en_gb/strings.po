@@ -79,6 +79,18 @@ msgctxt "#31125"
 msgid "Play from start"
 msgstr ""
 
+msgctxt "#31126"
+msgid "Mark watched"
+msgstr ""
+
+msgctxt "#31127"
+msgid "Watched"
+msgstr ""
+
+msgctxt "#31128"
+msgid "Watchlist"
+msgstr ""
+
 msgctxt "#31130"
 msgid "Ends at"
 msgstr ""

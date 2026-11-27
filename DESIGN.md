@@ -17,6 +17,8 @@ No code is copied from either (AF3 is CC BY-NC-SA, Nimbus is CC BY-SA/GPLv2) —
 - **Core has zero dependencies.** Every screen works and looks complete on bare Kodi.
 - **Optional integrations**, each gated by a single `$EXP[Has_<addon>]` expression defined in one file:
   - `plugin.video.themoviedb.helper` — ratings, recommendations, similar, people/filmography, trailers, "not in your library" search row.
+  - `script.trakt` (official Trakt add-on) — Info screen **Watchlist** button adds the title in one press.
+    Without it, TMDb Helper's Trakt menu is used for movies/shows; with neither, the button is hidden.
   - `service.upnext` — styled end-of-episode card.
   - Subtitle addons — download button in the Audio & Subtitles panel.
 - Never hardcode per-addon branches across many files (the Nimbus anti-pattern).
@@ -59,7 +61,7 @@ Emphasis: **cleanliness, browseability, immersion, ease of use.**
 
 ## 8. Info screen
 - **OK opens Info; Play/Resume is default-focused** (OK-OK plays). **Play key plays directly** from any view.
-- Layout: full-bleed fanart + left gradient → clearlogo (text fallback) → meta line (year · runtime · rating · genres) + media flags from the file (4K, HDR/DV, Atmos, codec) → plot (3 lines, More expands) → buttons: Play/Resume · Trailer · Watched · More.
+- Layout: full-bleed fanart + left gradient → clearlogo (text fallback) → meta line (year · runtime · rating · genres) + media flags from the file (4K, HDR/DV, Atmos, codec) → plot (3 lines, More expands) → buttons: Play/Resume · Trailer · Mark watched/Watched (toggle) · Watchlist (Trakt, optional) · More (Kodi item menu).
 - Scroll down: hero shrinks, rows slide up — Cast → Collection (if in set) → Recommendations/Similar (TMDbHelper only). TV: Seasons → Next Up → Cast → Recommendations.
 - Single window; rows by visibility, not hub windows.
 - Optional muted trailer autoplay after ~3s (TMDbHelper only, setting).
@@ -116,6 +118,11 @@ Three tiers:
 - **Kodi colour `00000000` means "no tint" (renders white)**; use the named `clear` colour instead.
 - **Default view per content type** works by giving every view `viewtype=list` and a `<visible>`
   condition; Kodi picks the first visible view in `<views>` order.
+- **Kodi's `ToggleWatched` action does nothing inside the Info dialog**, and the dialog's item never refreshes.
+  The Watched button calls `marvin.py togglewatched` (JSON-RPC, works for movie/episode/season/show), which sets
+  `Window(Home).Property(Marvin.WatchedOverride)` for instant feedback; the dialog clears it on open and
+  refreshes the underlying list on close.
+- **Artwork must stay visible behind scrims**: left scrim 1150px at ~88%, bottom scrim from y=500, light vignette.
 - **Seek/slider nibs render at texture size**; only small dedicated textures (`common/nib.png`) are used.
 
 ## 14. Roadmap

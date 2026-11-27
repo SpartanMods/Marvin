@@ -7,6 +7,7 @@
 <includes>
 	<!-- Optional integrations (never required) -->
 	<expression name="Has_TMDbHelper">System.AddonIsEnabled(plugin.video.themoviedb.helper)</expression>
+	<expression name="Has_Trakt">System.AddonIsEnabled(script.trakt)</expression>
 	<expression name="Has_UpNext">System.AddonIsEnabled(service.upnext)</expression>
 	<expression name="Has_SubtitleAddon">System.AddonIsEnabled(service.subtitles.opensubtitles-com) | System.AddonIsEnabled(service.subtitles.a4ksubtitles) | System.AddonIsEnabled(service.subtitles.subdl) | System.AddonIsEnabled(service.subtitles.opensubtitles) | System.AddonIsEnabled(service.subtitles.subscene)</expression>
 

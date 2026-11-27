@@ -104,13 +104,13 @@ def main():
     Image.new("RGBA", (4, 32), (255, 255, 255, 255)).save(out("common/tick.png"))  # chapter marks
 
     # Focus glow + drop shadow (9-slice: border = 40)
-    glow(64, 14, 40, 14, "common/glow.png", 0.9)
+    glow(64, 16, 40, 14, "common/glow.png", 0.9)
     glow(64, 14, 40, 18, "common/shadow.png", 1.0)
 
     # Diffuse masks for artwork (stretched to exact control size; keep aspect)
-    rounded(400, 600, 16, "masks/poster.png")
-    rounded(640, 360, 14, "masks/landscape.png")
-    rounded(640, 360, 10, "masks/landscape-small.png")
+    rounded(400, 600, 28, "masks/poster.png")      # ~14px at TV size
+    rounded(640, 360, 24, "masks/landscape.png")   # ~14px at TV size
+    rounded(640, 360, 18, "masks/landscape-small.png")
     circle(256, "masks/circle.png")
 
     # Gradients

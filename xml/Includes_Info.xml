@@ -64,7 +64,7 @@
 		<control type="grouplist" id="9000">
 			<left>96</left>
 			<top>718</top>
-			<width>1500</width>
+			<width>1760</width>
 			<height>80</height>
 			<orientation>horizontal</orientation>
 			<itemgap>16</itemgap>
@@ -89,15 +89,37 @@
 			<include content="Info_Button">
 				<param name="id" value="11"/>
 				<param name="width" value="280"/>
-				<param name="left" value="8"/><param name="right" value="5200"/>
+				<param name="left" value="8"/><param name="right" value="5300"/>
 				<param name="label" value="$LOCALIZE[20410]"/>
 				<param name="icon" value="$VAR[Icon_Trailer]"/>
 				<param name="visible" value="!String.IsEmpty(ListItem.Trailer)"/>
 			</include>
 			<include content="Info_Button">
+				<param name="id" value="5300"/>
+				<param name="width" value="370"/>
+				<param name="left" value="11"/><param name="right" value="5400"/>
+				<param name="label" value="$VAR[Info_WatchedLabel]"/>
+				<param name="icon" value="$VAR[Info_WatchedIcon]"/>
+				<param name="onclick" value="RunScript(special://skin/resources/marvin.py,togglewatched,type=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID],show=$INFO[ListItem.TvShowDBID],season=$INFO[ListItem.Season],watched=$VAR[Info_WatchedTarget])"/>
+				<param name="visible" value="!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBType,set)"/>
+			</include>
+			<!-- Trakt watchlist: Trakt add-on (one press) or TMDb Helper's Trakt menu. Hidden when neither is installed. -->
+			<include content="Info_Button">
+				<param name="id" value="5400"/>
+				<param name="width" value="320"/>
+				<param name="left" value="5300"/><param name="right" value="5200"/>
+				<param name="label" value="$LOCALIZE[31128]"/>
+				<param name="icon" value="$VAR[Icon_Bookmark]"/>
+				<param name="onclick_condition" value="$EXP[Has_Trakt]"/>
+				<param name="onclick" value="RunScript(script.trakt,action=addtowatchlist)"/>
+				<param name="onclick_alt_condition" value="!$EXP[Has_Trakt] + $EXP[Has_TMDbHelper]"/>
+				<param name="onclick_alt" value="RunScript(plugin.video.themoviedb.helper,sync_trakt,tmdb_type=$VAR[Info_TMDbType],tmdb_id=$INFO[ListItem.UniqueID(tmdb)])"/>
+				<param name="visible" value="$EXP[Has_Trakt] | [$EXP[Has_TMDbHelper] + !String.IsEmpty(ListItem.UniqueID(tmdb)) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]]"/>
+			</include>
+			<include content="Info_Button">
 				<param name="id" value="5200"/>
 				<param name="width" value="240"/>
-				<param name="left" value="11"/><param name="right" value="5200"/>
+				<param name="left" value="5400"/><param name="right" value="5200"/>
 				<param name="label" value="$LOCALIZE[31123]"/>
 				<param name="icon" value="$VAR[Icon_More]"/>
 				<param name="onclick" value="Action(ContextMenu)"/>
@@ -127,6 +149,26 @@
 			</control>
 		</control>
 	</include>
+	<!-- Watched state. Marvin.WatchedOverride holds the result of a toggle made in this dialog
+	     (the dialog's item does not refresh itself); it is cleared whenever the dialog opens. -->
+	<expression name="Info_NativeWatched">[[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + Integer.IsGreater(ListItem.PlayCount,0)] | [[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + Integer.IsGreater(ListItem.Property(TotalEpisodes),0) + String.IsEqual(ListItem.Property(UnWatchedEpisodes),0)]</expression>
+	<expression name="Info_Watched">String.IsEqual(Window(Home).Property(Marvin.WatchedOverride),1) | [String.IsEmpty(Window(Home).Property(Marvin.WatchedOverride)) + $EXP[Info_NativeWatched]]</expression>
+	<variable name="Info_WatchedLabel">
+		<value condition="$EXP[Info_Watched]">$LOCALIZE[31127]</value>
+		<value>$LOCALIZE[31126]</value>
+	</variable>
+	<variable name="Info_WatchedIcon">
+		<value condition="$EXP[Info_Watched]">$VAR[Icon_CheckCircle]</value>
+		<value>$VAR[Icon_Eye]</value>
+	</variable>
+	<variable name="Info_WatchedTarget">
+		<value condition="$EXP[Info_Watched]">0</value>
+		<value>1</value>
+	</variable>
+	<variable name="Info_TMDbType">
+		<value condition="String.IsEqual(ListItem.DBType,tvshow)">tv</value>
+		<value>movie</value>
+	</variable>
 	<variable name="Info_PlayLabel_Start">
 		<value condition="ListItem.IsResumable">$LOCALIZE[31125]</value>
 		<value>$VAR[Info_PlayLabel]</value>
@@ -147,6 +189,9 @@
 		<param name="right"/>
 		<param name="visible">true</param>
 		<param name="onclick">noop</param>
+		<param name="onclick_condition">true</param>
+		<param name="onclick_alt">noop</param>
+		<param name="onclick_alt_condition">false</param>
 		<definition>
 			<control type="group">
 				<width>$PARAM[width]</width>
@@ -164,7 +209,8 @@
 					<focusedcolor>text_dark</focusedcolor>
 					<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
 					<texturenofocus border="24" colordiffuse="accent_soft">common/pill48.png</texturenofocus>
-					<onclick>$PARAM[onclick]</onclick>
+					<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick]</onclick>
+					<onclick condition="$PARAM[onclick_alt_condition]">$PARAM[onclick_alt]</onclick>
 					<onleft>$PARAM[left]</onleft>
 					<onright>$PARAM[right]</onright>
 					<ondown>50</ondown>
