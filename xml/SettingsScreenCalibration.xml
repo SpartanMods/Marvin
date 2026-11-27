@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi: 2-4 labels, 8 top-left, 9 bottom-right, 10 subtitles, 11 pixel ratio, 12 bottom-left? -->
+<window>
+	<defaultcontrol always="true">8</defaultcontrol>
+	<controls>
+		<control type="image"><left>0</left><top>0</top><width>1920</width><height>1080</height><texture colordiffuse="bg">common/white.png</texture></control>
+		<control type="label" id="2"><left>0</left><top>420</top><width>1920</width><height>60</height><align>center</align><font>Title</font></control>
+		<control type="label" id="3"><left>0</left><top>490</top><width>1920</width><height>40</height><align>center</align><textcolor>text_muted</textcolor></control>
+		<control type="label" id="4"><left>0</left><top>540</top><width>1920</width><height>40</height><align>center</align><textcolor>text_muted</textcolor></control>
+		<control type="mover" id="8"><left>0</left><top>0</top><width>64</width><height>64</height><texturefocus colordiffuse="text">common/r8.png</texturefocus><texturenofocus colordiffuse="text_faint">common/r8.png</texturenofocus></control>
+		<control type="mover" id="9"><right>0</right><bottom>0</bottom><width>64</width><height>64</height><texturefocus colordiffuse="text">common/r8.png</texturefocus><texturenofocus colordiffuse="text_faint">common/r8.png</texturenofocus></control>
+		<control type="mover" id="10"><left>760</left><bottom>80</bottom><width>400</width><height>8</height><texturefocus colordiffuse="text">common/white.png</texturefocus><texturenofocus colordiffuse="text_faint">common/white.png</texturenofocus></control>
+		<control type="resize" id="11"><left>810</left><top>390</top><width>300</width><height>300</height><texturefocus colordiffuse="text">common/r14-ring.png</texturefocus><texturenofocus colordiffuse="text_faint">common/r14-ring.png</texturenofocus></control>
+		<control type="mover" id="12"><left>0</left><bottom>0</bottom><width>64</width><height>64</height><texturefocus colordiffuse="text">common/r8.png</texturefocus><texturenofocus colordiffuse="text_faint">common/r8.png</texturenofocus></control>
+	</controls>
+</window>

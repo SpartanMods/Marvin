@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi: 311 heading, 312 edit, 100-172 keys, 8 backspace, 32 space, 300 done, 301 cancel,
+     302 shift, 303 caps, 304 symbols, 305/306 cursor, 307 IP, 308 clear?, 309 layout, 310 reveal, 313/314 IME -->
+<window>
+	<defaultcontrol always="true">100</defaultcontrol>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<centerleft>50%</centerleft>
+			<top>200</top>
+			<width>1500</width>
+			<height>760</height>
+			<include content="Panel_Glass"/>
+			<control type="label" id="311"><left>48</left><top>24</top><width>1400</width><height>56</height><font>Title</font></control>
+			<control type="edit" id="312">
+				<left>48</left><top>92</top><width>1404</width><height>80</height>
+				<font>TitleLarge</font>
+				<textoffsetx>28</textoffsetx>
+				<texturefocus border="14" colordiffuse="bg_raised">common/r14.png</texturefocus>
+				<texturenofocus border="14" colordiffuse="bg_raised">common/r14.png</texturenofocus>
+			</control>
+			<control type="label" id="313"><left>48</left><top>176</top><width>200</width><height>36</height><font>Small</font></control>
+			<control type="label" id="314"><left>260</left><top>176</top><width>1190</width><height>36</height><font>Small</font></control>
+			<control type="panel" id="9010"><left>48</left><top>176</top><width>1400</width><height>40</height><visible>false</visible></control>
+			<control type="group">
+				<left>48</left><top>224</top>
+				<control type="grouplist">
+					<top>0</top><width>1300</width><height>76</height>
+					<orientation>horizontal</orientation><itemgap>8</itemgap>
+					<include content="Key"><param name="id" value="100"/></include>
+					<include content="Key"><param name="id" value="101"/></include>
+					<include content="Key"><param name="id" value="102"/></include>
+					<include content="Key"><param name="id" value="103"/></include>
+					<include content="Key"><param name="id" value="104"/></include>
+					<include content="Key"><param name="id" value="105"/></include>
+					<include content="Key"><param name="id" value="106"/></include>
+					<include content="Key"><param name="id" value="107"/></include>
+					<include content="Key"><param name="id" value="108"/></include>
+					<include content="Key"><param name="id" value="109"/></include>
+					<include content="Key"><param name="id" value="110"/></include>
+					<include content="Key"><param name="id" value="111"/></include>
+					<include content="Key"><param name="id" value="112"/></include>
+				</control>
+				<control type="grouplist">
+					<top>84</top><width>1300</width><height>76</height>
+					<orientation>horizontal</orientation><itemgap>8</itemgap>
+					<include content="Key"><param name="id" value="120"/></include>
+					<include content="Key"><param name="id" value="121"/></include>
+					<include content="Key"><param name="id" value="122"/></include>
+					<include content="Key"><param name="id" value="123"/></include>
+					<include content="Key"><param name="id" value="124"/></include>
+					<include content="Key"><param name="id" value="125"/></include>
+					<include content="Key"><param name="id" value="126"/></include>
+					<include content="Key"><param name="id" value="127"/></include>
+					<include content="Key"><param name="id" value="128"/></include>
+					<include content="Key"><param name="id" value="129"/></include>
+					<include content="Key"><param name="id" value="130"/></include>
+					<include content="Key"><param name="id" value="131"/></include>
+					<include content="Key"><param name="id" value="132"/></include>
+				</control>
+				<control type="grouplist">
+					<top>168</top><width>1300</width><height>76</height>
+					<orientation>horizontal</orientation><itemgap>8</itemgap>
+					<include content="Key"><param name="id" value="140"/></include>
+					<include content="Key"><param name="id" value="141"/></include>
+					<include content="Key"><param name="id" value="142"/></include>
+					<include content="Key"><param name="id" value="143"/></include>
+					<include content="Key"><param name="id" value="144"/></include>
+					<include content="Key"><param name="id" value="145"/></include>
+					<include content="Key"><param name="id" value="146"/></include>
+					<include content="Key"><param name="id" value="147"/></include>
+					<include content="Key"><param name="id" value="148"/></include>
+					<include content="Key"><param name="id" value="149"/></include>
+					<include content="Key"><param name="id" value="150"/></include>
+					<include content="Key"><param name="id" value="151"/></include>
+					<include content="Key"><param name="id" value="152"/></include>
+				</control>
+				<control type="grouplist">
+					<top>252</top><width>1300</width><height>76</height>
+					<orientation>horizontal</orientation><itemgap>8</itemgap>
+					<include content="Key"><param name="id" value="160"/></include>
+					<include content="Key"><param name="id" value="161"/></include>
+					<include content="Key"><param name="id" value="162"/></include>
+					<include content="Key"><param name="id" value="163"/></include>
+					<include content="Key"><param name="id" value="164"/></include>
+					<include content="Key"><param name="id" value="165"/></include>
+					<include content="Key"><param name="id" value="166"/></include>
+					<include content="Key"><param name="id" value="167"/></include>
+					<include content="Key"><param name="id" value="168"/></include>
+					<include content="Key"><param name="id" value="169"/></include>
+					<include content="Key"><param name="id" value="170"/></include>
+					<include content="Key"><param name="id" value="171"/></include>
+					<include content="Key"><param name="id" value="172"/></include>
+				</control>
+			</control>
+			<control type="grouplist">
+				<left>48</left><top>566</top><width>1404</width><height>76</height>
+				<orientation>horizontal</orientation><itemgap>8</itemgap>
+				<include content="KeyWide"><param name="id" value="302"/><param name="label" value="$LOCALIZE[20179]"/><param name="w" value="160"/></include>
+				<include content="KeyWide"><param name="id" value="303"/><param name="label" value="$LOCALIZE[20180]"/><param name="w" value="160"/></include>
+				<include content="KeyWide"><param name="id" value="304"/><param name="label" value="!?@"/><param name="w" value="130"/></include>
+				<include content="KeyWide"><param name="id" value="32"/><param name="label" value="$LOCALIZE[31170]"/><param name="w" value="380"/></include>
+				<include content="KeyWide"><param name="id" value="305"/><param name="label" value="$VAR[Icon_CaretLeft]"/><param name="w" value="90"/><param name="font" value="Icon32"/></include>
+				<include content="KeyWide"><param name="id" value="306"/><param name="label" value="$VAR[Icon_CaretRight]"/><param name="w" value="90"/><param name="font" value="Icon32"/></include>
+				<include content="KeyWide"><param name="id" value="8"/><param name="label" value="$LOCALIZE[31171]"/><param name="w" value="220"/></include>
+			</control>
+			<control type="grouplist">
+				<left>48</left><top>660</top><width>1404</width><height>76</height>
+				<orientation>horizontal</orientation><itemgap>8</itemgap>
+				<include content="KeyWide"><param name="id" value="309"/><param name="label" value="$LOCALIZE[31172]"/><param name="w" value="220"/></include>
+				<include content="KeyWide"><param name="id" value="307"/><param name="label" value="IP"/><param name="w" value="120"/></include>
+				<include content="KeyWide"><param name="id" value="310"/><param name="label" value="$VAR[Icon_Eye]"/><param name="w" value="100"/><param name="font" value="Icon32"/></include>
+				<include content="KeyWide"><param name="id" value="301"/><param name="label" value="$LOCALIZE[222]"/><param name="w" value="260"/></include>
+				<include content="KeyWide"><param name="id" value="300"/><param name="label" value="$LOCALIZE[20177]"/><param name="w" value="300"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

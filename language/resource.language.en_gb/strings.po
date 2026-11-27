@@ -1,0 +1,256 @@
+# Marvin skin strings
+msgid ""
+msgstr ""
+"Project-Id-Version: skin.marvin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+
+msgctxt "#31010"
+msgid "Continue Watching"
+msgstr ""
+
+msgctxt "#31011"
+msgid "Recently Added"
+msgstr ""
+
+msgctxt "#31012"
+msgid "Unwatched"
+msgstr ""
+
+msgctxt "#31013"
+msgid "Top Rated"
+msgstr ""
+
+msgctxt "#31014"
+msgid "Collections"
+msgstr ""
+
+msgctxt "#31015"
+msgid "Shows in Progress"
+msgstr ""
+
+msgctxt "#31016"
+msgid "New Episodes"
+msgstr ""
+
+msgctxt "#31017"
+msgid "Unwatched Shows"
+msgstr ""
+
+msgctxt "#31018"
+msgid "All Shows"
+msgstr ""
+
+msgctxt "#31120"
+msgid "On"
+msgstr ""
+
+msgctxt "#31100"
+msgid "Poster Wall"
+msgstr ""
+
+msgctxt "#31101"
+msgid "Episode List"
+msgstr ""
+
+msgctxt "#31102"
+msgid "List"
+msgstr ""
+
+msgctxt "#31121"
+msgid "Resume"
+msgstr ""
+
+msgctxt "#31122"
+msgid "Episodes"
+msgstr ""
+
+msgctxt "#31123"
+msgid "More"
+msgstr ""
+
+msgctxt "#31124"
+msgid "watched"
+msgstr ""
+
+msgctxt "#31125"
+msgid "Play from start"
+msgstr ""
+
+msgctxt "#31126"
+msgid "Mark watched"
+msgstr ""
+
+msgctxt "#31127"
+msgid "Watched"
+msgstr ""
+
+msgctxt "#31128"
+msgid "Watchlist"
+msgstr ""
+
+msgctxt "#31130"
+msgid "Ends at"
+msgstr ""
+
+msgctxt "#31131"
+msgid "Audio & Subtitles"
+msgstr ""
+
+msgctxt "#31132"
+msgid "Track"
+msgstr ""
+
+msgctxt "#31133"
+msgid "All audio settings"
+msgstr ""
+
+msgctxt "#31134"
+msgid "Subtitles"
+msgstr ""
+
+msgctxt "#31135"
+msgid "Download subtitles"
+msgstr ""
+
+msgctxt "#31136"
+msgid "All subtitle settings"
+msgstr ""
+
+msgctxt "#31137"
+msgid "Chapters & bookmarks"
+msgstr ""
+
+msgctxt "#31138"
+msgid "Video settings"
+msgstr ""
+
+msgctxt "#31139"
+msgid "Stop"
+msgstr ""
+
+msgctxt "#31140"
+msgid "Next"
+msgstr ""
+
+msgctxt "#31150"
+msgid "Home, look and behaviour"
+msgstr ""
+
+msgctxt "#31151"
+msgid "Video, audio and subtitles"
+msgstr ""
+
+msgctxt "#31152"
+msgid "Sources and file lists"
+msgstr ""
+
+msgctxt "#31153"
+msgid "Scrapers and artwork"
+msgstr ""
+
+msgctxt "#31154"
+msgid "Remote control and sharing"
+msgstr ""
+
+msgctxt "#31155"
+msgid "Skin, language and screensaver"
+msgstr ""
+
+msgctxt "#31156"
+msgid "Users and login"
+msgstr ""
+
+msgctxt "#31157"
+msgid "Display, audio output and input"
+msgstr ""
+
+msgctxt "#31158"
+msgid "Install and manage add-ons"
+msgstr ""
+
+msgctxt "#31159"
+msgid "Browse and copy files"
+msgstr ""
+
+msgctxt "#31160"
+msgid "Hardware and storage"
+msgstr ""
+
+msgctxt "#31161"
+msgid "Recent activity"
+msgstr ""
+
+msgctxt "#31162"
+msgid "Maintenance"
+msgstr ""
+
+msgctxt "#31163"
+msgid "Reset home rows"
+msgstr ""
+
+msgctxt "#31164"
+msgid "Restore the default widget rows"
+msgstr ""
+
+msgctxt "#31165"
+msgid "Apply recommended Kodi settings"
+msgstr ""
+
+msgctxt "#31166"
+msgid "OK opens Info, hide '..' and 'All seasons'"
+msgstr ""
+
+msgctxt "#31167"
+msgid "Recommended settings applied"
+msgstr ""
+
+msgctxt "#31168"
+msgid "About"
+msgstr ""
+
+msgctxt "#31170"
+msgid "Space"
+msgstr ""
+
+msgctxt "#31171"
+msgid "Delete"
+msgstr ""
+
+msgctxt "#31172"
+msgid "Layout"
+msgstr ""
+
+msgctxt "#31180"
+msgid "Codec"
+msgstr ""
+
+msgctxt "#31181"
+msgid "Format"
+msgstr ""
+
+msgctxt "#31182"
+msgid "Playback details"
+msgstr ""
+
+msgctxt "#31183"
+msgid "Decoder"
+msgstr ""
+
+msgctxt "#31184"
+msgid "Deinterlace"
+msgstr ""
+
+msgctxt "#31185"
+msgid "Audio format"
+msgstr ""
+
+msgctxt "#31186"
+msgid "Cache"
+msgstr ""
+
+msgctxt "#31190"
+msgid "Who's watching?"
+msgstr ""

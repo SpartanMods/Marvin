@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: add-on info. Kodi: 6 install, 7 enable, 8 update, 9 settings, 10 dependencies, 12 launch, 13 auto-update, 14 versions, 50 screenshots -->
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include content="Background_Art"><param name="art" value="$INFO[ListItem.Art(fanart)]"/></include>
+		<control type="image"><left>96</left><top>150</top><width>200</width><height>200</height><texture>$INFO[ListItem.Icon]</texture><aspectratio>keep</aspectratio></control>
+		<control type="label"><left>330</left><top>160</top><width>1300</width><height>70</height><font>TitleLarge</font><label>$INFO[ListItem.Label]</label></control>
+		<control type="label"><left>330</left><top>236</top><width>1300</width><height>40</height><font>Meta</font><textcolor>text_muted</textcolor><label>$INFO[ListItem.AddonVersion,v,]$INFO[ListItem.AddonCreator,  ·  ,]</label></control>
+		<control type="textbox"><left>96</left><top>400</top><width>1200</width><height>300</height><label>$INFO[ListItem.AddonDescription]</label></control>
+		<control type="grouplist" id="9000">
+			<left>96</left><top>740</top><width>1728</width><height>76</height>
+			<orientation>horizontal</orientation><itemgap>16</itemgap>
+			<ondown>50</ondown>
+			<include content="Dialog_Button"><param name="id" value="12"/><param name="label" value="$LOCALIZE[21479]"/></include>
+			<include content="Dialog_Button"><param name="id" value="6"/></include>
+			<include content="Dialog_Button"><param name="id" value="8"/><param name="label" value="$LOCALIZE[24069]"/></include>
+			<include content="Dialog_Button"><param name="id" value="7"/></include>
+			<include content="Dialog_Button"><param name="id" value="9"/><param name="label" value="$LOCALIZE[24020]"/></include>
+			<include content="Dialog_Button"><param name="id" value="10"/><param name="label" value="$LOCALIZE[39024]"/></include>
+			<include content="Dialog_Button"><param name="id" value="14"/><param name="label" value="$LOCALIZE[24069]"/></include>
+			<control type="radiobutton" id="13"><width>300</width><include>Settings_RowLook</include><include>Settings_Radio</include><label>$LOCALIZE[21340]</label></control>
+		</control>
+		<control type="panel" id="50">
+			<left>96</left><top>850</top><width>1728</width><height>200</height>
+			<orientation>horizontal</orientation><onup>9000</onup>
+			<itemlayout width="340" height="200"><control type="image"><width>320</width><height>180</height><aspectratio>scale</aspectratio><texture diffuse="masks/landscape.png">$INFO[ListItem.Thumb]</texture></control></itemlayout>
+			<focusedlayout width="340" height="200"><control type="image"><width>320</width><height>180</height><aspectratio>scale</aspectratio><texture diffuse="masks/landscape.png">$INFO[ListItem.Thumb]</texture></control></focusedlayout>
+		</control>
+		<include>Clock</include>
+	</controls>
+</window>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- v0.1 skin settings: the essentials. The full settings page arrives in v0.4. -->
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include>Background_Solid</include>
+		<control type="label">
+			<left>96</left><top>40</top><width>1300</width><height>60</height>
+			<font>Title</font><label>Marvin</label>
+		</control>
+		<include>Clock</include>
+		<control type="grouplist" id="9000">
+			<left>72</left><top>150</top><width>1100</width><height>880</height>
+			<itemgap>2</itemgap>
+			<control type="label"><width>1100</width><height>56</height><font>CaptionCaps</font><textcolor>text_faint</textcolor><aligny>bottom</aligny><textoffsetx>28</textoffsetx><label>[UPPERCASE]$LOCALIZE[10000][/UPPERCASE]</label></control>
+			<control type="radiobutton" id="601"><width>1100</width><include>Settings_RowLook</include><include>Settings_Radio</include><label>$LOCALIZE[342]</label><selected>!Skin.HasSetting(Home.HideMovies)</selected><onclick>Skin.ToggleSetting(Home.HideMovies)</onclick></control>
+			<control type="radiobutton" id="602"><width>1100</width><include>Settings_RowLook</include><include>Settings_Radio</include><label>$LOCALIZE[20343]</label><selected>!Skin.HasSetting(Home.HideTV)</selected><onclick>Skin.ToggleSetting(Home.HideTV)</onclick></control>
+			<control type="radiobutton" id="603"><width>1100</width><include>Settings_RowLook</include><include>Settings_Radio</include><label>$LOCALIZE[1036]</label><selected>!Skin.HasSetting(Home.HideFavourites)</selected><onclick>Skin.ToggleSetting(Home.HideFavourites)</onclick></control>
+			<control type="label"><width>1100</width><height>56</height><font>CaptionCaps</font><textcolor>text_faint</textcolor><aligny>bottom</aligny><textoffsetx>28</textoffsetx><label>[UPPERCASE]$LOCALIZE[31162][/UPPERCASE]</label></control>
+			<control type="button" id="610"><width>1100</width><include>Settings_RowLook</include><label>$LOCALIZE[31163]</label><label2>$LOCALIZE[31164]</label2><onclick>Skin.Reset(Widgets.Initialised)</onclick><onclick>ReloadSkin()</onclick></control>
+			<control type="button" id="611"><width>1100</width><include>Settings_RowLook</include><label>$LOCALIZE[31165]</label><label2>$LOCALIZE[31166]</label2><onclick>RunScript(special://skin/resources/marvin.py,apply)</onclick><onclick>Notification(Marvin,$LOCALIZE[31167],3000)</onclick></control>
+			<control type="label"><width>1100</width><height>56</height><font>CaptionCaps</font><textcolor>text_faint</textcolor><aligny>bottom</aligny><textoffsetx>28</textoffsetx><label>[UPPERCASE]$LOCALIZE[31168][/UPPERCASE]</label></control>
+			<control type="button" id="620"><width>1100</width><include>Settings_RowLook</include><label>Marvin</label><label2>$INFO[System.AddonVersion(skin.marvin)]</label2></control>
+		</control>
+	</controls>
+</window>

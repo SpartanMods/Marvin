@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi settings pages: 2 title, 3 categories, 5 settings, 6 description, 7-15 templates, 20 level -->
+<window>
+	<defaultcontrol always="true">3</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include>Template_SettingsPage</include>
+		<control type="button" id="20">
+			<left>72</left><top>980</top><width>400</width><height>64</height>
+			<font>Small</font><textoffsetx>28</textoffsetx>
+			<textcolor>text_faint</textcolor><focusedcolor>text_dark</focusedcolor>
+			<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+			<texturenofocus border="24" colordiffuse="clear">common/pill48.png</texturenofocus>
+			<onup>3</onup><onright>5</onright>
+		</control>
+	</controls>
+</window>

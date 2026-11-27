@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Cards: the shared item visuals for home rows and library views.
+	Layouts_* emit both itemlayout and focusedlayout; "pad" is the breathing room
+	around each card for the focus zoom and glow (containers clip to their bounds).
+-->
+<includes>
+	<!-- ============ Poster (2:3) ============ -->
+	<include name="Card_PosterBody">
+		<param name="w">200</param>
+		<param name="h">300</param>
+		<param name="pw">172</param>
+		<param name="pt">280</param>
+		<definition>
+			<control type="image">
+				<width>$PARAM[w]</width><height>$PARAM[h]</height>
+				<texture border="14" colordiffuse="bg_raised">common/r14.png</texture>
+			</control>
+			<control type="label">
+				<width>$PARAM[w]</width><height>$PARAM[h]</height>
+				<align>center</align>
+				<font>LabelBold</font>
+				<wrapmultiline>true</wrapmultiline>
+				<label>$INFO[ListItem.Label]</label>
+				<visible>String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(tvshow.poster)) + String.IsEmpty(ListItem.Art(thumb))</visible>
+			</control>
+			<control type="image">
+				<width>$PARAM[w]</width><height>$PARAM[h]</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<fadetime>200</fadetime>
+				<texture diffuse="masks/poster.png" background="true">$VAR[Art_Poster]</texture>
+			</control>
+			<include content="Card_Badges">
+				<param name="w" value="$PARAM[w]"/>
+				<param name="h" value="$PARAM[h]"/>
+				<param name="pw" value="$PARAM[pw]"/>
+				<param name="pt" value="$PARAM[pt]"/>
+			</include>
+		</definition>
+	</include>
+
+	<!-- Watched check, unwatched-episode count, resume progress -->
+	<include name="Card_Badges">
+		<param name="w"/>
+		<param name="h"/>
+		<param name="pw"/>
+		<param name="pt"/>
+		<definition>
+			<control type="group">
+				<left>$PARAM[w]</left>
+				<visible>Integer.IsGreater(ListItem.PlayCount,0) + [!ListItem.IsFolder | String.IsEqual(ListItem.Property(UnWatchedEpisodes),0)]</visible>
+				<control type="image">
+					<left>-52</left><top>12</top><width>40</width><height>40</height>
+					<texture colordiffuse="scrim_strong">common/circle.png</texture>
+				</control>
+				<control type="label">
+					<left>-52</left><top>12</top><width>40</width><height>40</height>
+					<align>center</align>
+					<font>Icon24</font>
+					<label>$VAR[Icon_Check]</label>
+				</control>
+			</control>
+			<control type="group">
+				<left>$PARAM[w]</left>
+				<visible>Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + Integer.IsGreater(ListItem.Property(WatchedEpisodes),0)</visible>
+				<control type="button">
+					<left>-64</left><top>12</top><width>52</width><height>34</height>
+					<align>center</align>
+					<enable>false</enable>
+					<font>CaptionCaps</font>
+					<label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+					<disabledcolor>text_dark</disabledcolor>
+					<textoffsetx>0</textoffsetx>
+					<texturenofocus border="8" colordiffuse="focus_fill">common/pill16.png</texturenofocus>
+					<texturefocus border="8" colordiffuse="focus_fill">common/pill16.png</texturefocus>
+				</control>
+			</control>
+			<control type="progress">
+				<left>14</left><top>$PARAM[pt]</top>
+				<width>$PARAM[pw]</width>
+				<height>6</height>
+				<texturebg border="3" colordiffuse="progress_track">common/pill16.png</texturebg>
+				<midtexture border="3" colordiffuse="progress_fill">common/pill16.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>Integer.IsGreater(ListItem.PercentPlayed,0) + !ListItem.IsFolder</visible>
+			</control>
+		</definition>
+	</include>
+
+	<include name="Layouts_Poster">
+		<param name="id"/>
+		<param name="pw">172</param>
+		<param name="pt">280</param>
+		<param name="gw">280</param>
+		<param name="gh">380</param>
+		<param name="w">200</param>
+		<param name="h">300</param>
+		<param name="cellw">228</param>
+		<param name="cellh">348</param>
+		<param name="pad">24</param>
+		<definition>
+			<itemlayout width="$PARAM[cellw]" height="$PARAM[cellh]">
+				<control type="group">
+					<left>$PARAM[pad]</left><top>$PARAM[pad]</top>
+					<include content="Card_PosterBody">
+						<param name="w" value="$PARAM[w]"/><param name="h" value="$PARAM[h]"/><param name="pw" value="$PARAM[pw]"/><param name="pt" value="$PARAM[pt]"/>
+					</include>
+				</control>
+			</itemlayout>
+			<focusedlayout width="$PARAM[cellw]" height="$PARAM[cellh]">
+				<control type="group">
+					<left>$PARAM[pad]</left><top>$PARAM[pad]</top>
+					<include>Anim_CardFocus</include>
+					<control type="image">
+						<left>-40</left><top>-40</top><width>$PARAM[gw]</width><height>$PARAM[gh]</height>
+						<texture border="54" colordiffuse="focus_glow">common/glow.png</texture>
+						<include>Anim_Visible</include>
+						<visible>Control.HasFocus($PARAM[id])</visible>
+					</control>
+					<include content="Card_PosterBody">
+						<param name="w" value="$PARAM[w]"/><param name="h" value="$PARAM[h]"/><param name="pw" value="$PARAM[pw]"/><param name="pt" value="$PARAM[pt]"/>
+					</include>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+
+	<!-- ============ Landscape (16:9) with caption ============ -->
+	<include name="Card_LandscapeBody">
+		<param name="w">384</param>
+		<param name="h">216</param>
+		<param name="pw">356</param>
+		<param name="pt">196</param>
+		<param name="caption">true</param>
+		<definition>
+			<control type="image">
+				<width>$PARAM[w]</width><height>$PARAM[h]</height>
+				<texture border="14" colordiffuse="bg_raised">common/r14.png</texture>
+			</control>
+			<control type="image">
+				<width>$PARAM[w]</width><height>$PARAM[h]</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<fadetime>200</fadetime>
+				<texture diffuse="masks/landscape.png" background="true">$VAR[Art_Landscape]</texture>
+			</control>
+			<!-- Art without a baked-in title gets a scrim + logo/title overlay -->
+			<control type="group">
+				<visible>String.IsEmpty(ListItem.Art(landscape)) + String.IsEmpty(ListItem.Art(tvshow.landscape)) + !String.IsEqual(ListItem.DBType,episode)</visible>
+				<control type="image">
+					<top>40%</top><width>$PARAM[w]</width><height>60%</height>
+					<aspectratio>stretch</aspectratio>
+					<texture diffuse="masks/landscape-small.png" colordiffuse="E6000000">gradients/bottom-soft.png</texture>
+				</control>
+				<control type="group">
+					<left>20</left><bottom>18</bottom><height>64</height>
+					<include content="Logo">
+						<param name="width" value="220"/>
+						<param name="height" value="64"/>
+						<param name="font" value="LabelBold"/>
+						<param name="fb_top" value="24"/><param name="fb_h" value="40"/>
+					</include>
+				</control>
+			</control>
+			<include content="Card_Badges">
+				<param name="w" value="$PARAM[w]"/>
+				<param name="h" value="$PARAM[h]"/>
+				<param name="pw" value="$PARAM[pw]"/>
+				<param name="pt" value="$PARAM[pt]"/>
+			</include>
+			<control type="group">
+				<top>$PARAM[h]</top>
+				<visible>$PARAM[caption]</visible>
+				<control type="label">
+					<top>14</top><width>$PARAM[w]</width><height>34</height>
+					<font>LabelBold</font>
+					<label>$VAR[Label_LogoTitle]</label>
+				</control>
+				<control type="label">
+					<top>48</top><width>$PARAM[w]</width><height>30</height>
+					<font>Small</font>
+					<textcolor>text_muted</textcolor>
+					<label>$VAR[Label_CardSubtitle]</label>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<include name="Layouts_Landscape">
+		<param name="id"/>
+		<param name="pw">356</param>
+		<param name="pt">196</param>
+		<param name="gw">464</param>
+		<param name="gh">296</param>
+		<param name="w">384</param>
+		<param name="h">216</param>
+		<param name="cellw">412</param>
+		<param name="cellh">330</param>
+		<param name="pad">24</param>
+		<param name="caption">true</param>
+		<definition>
+			<itemlayout width="$PARAM[cellw]" height="$PARAM[cellh]">
+				<control type="group">
+					<left>$PARAM[pad]</left><top>$PARAM[pad]</top>
+					<include content="Card_LandscapeBody">
+						<param name="w" value="$PARAM[w]"/><param name="h" value="$PARAM[h]"/><param name="pw" value="$PARAM[pw]"/><param name="pt" value="$PARAM[pt]"/><param name="caption" value="$PARAM[caption]"/>
+					</include>
+				</control>
+			</itemlayout>
+			<focusedlayout width="$PARAM[cellw]" height="$PARAM[cellh]">
+				<control type="group">
+					<left>$PARAM[pad]</left><top>$PARAM[pad]</top>
+					<control type="group">
+						<include>Anim_CardFocus</include>
+						<control type="image">
+							<left>-40</left><top>-40</top><width>$PARAM[gw]</width><height>$PARAM[gh]</height>
+							<texture border="54" colordiffuse="focus_glow">common/glow.png</texture>
+							<include>Anim_Visible</include>
+							<visible>Control.HasFocus($PARAM[id])</visible>
+						</control>
+					</control>
+					<control type="group">
+						<include>Anim_CardFocus</include>
+						<include content="Card_LandscapeBody">
+							<param name="w" value="$PARAM[w]"/><param name="h" value="$PARAM[h]"/><param name="pw" value="$PARAM[pw]"/><param name="pt" value="$PARAM[pt]"/><param name="caption" value="$PARAM[caption]"/>
+						</include>
+					</control>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+</includes>

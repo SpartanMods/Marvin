@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi clones button 1000 into grouplist 996 and sizes background 999 to the auto-height list.
+     Kodi places the menu next to the focused item, so a full-screen scrim keeps it legible. -->
+<window>
+	<defaultcontrol>996</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<coordinates>
+		<left>0</left>
+		<top>0</top>
+	</coordinates>
+	<controls>
+		<control type="image">
+			<left>-1920</left><top>-1080</top><width>5760</width><height>3240</height>
+			<texture colordiffuse="scrim">common/white.png</texture>
+		</control>
+		<control type="button">
+			<left>-1920</left><top>-1080</top><width>5760</width><height>3240</height>
+			<texturefocus/>
+			<texturenofocus/>
+			<onclick>Action(close)</onclick>
+		</control>
+		<control type="group">
+			<control type="image" id="999">
+				<left>0</left><top>0</top><width>600</width><height>700</height>
+				<texture border="14" colordiffuse="glass_strong">common/r14.png</texture>
+			</control>
+			<control type="grouplist" id="996">
+				<left>0</left><top>0</top><width>600</width>
+				<height max="780">auto</height>
+				<itemgap>0</itemgap>
+				<usecontrolcoords>true</usecontrolcoords>
+			</control>
+		</control>
+		<control type="button" id="1000">
+			<width>600</width>
+			<height>68</height>
+			<font>Label</font>
+			<textoffsetx>32</textoffsetx>
+			<aligny>center</aligny>
+			<textcolor>text</textcolor>
+			<focusedcolor>text_dark</focusedcolor>
+			<texturefocus border="14" colordiffuse="focus_fill">common/r14.png</texturefocus>
+			<texturenofocus border="14" colordiffuse="clear">common/r14.png</texturenofocus>
+		</control>
+	</controls>
+</window>

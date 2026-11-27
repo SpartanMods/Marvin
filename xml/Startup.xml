@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- First window Kodi opens: seed skin defaults, then hand over to the startup window. -->
+<window>
+	<include>Action_WidgetDefaults</include>
+	<onload condition="!Skin.HasSetting(Marvin.SetupDone)">AlarmClock(marvinsetup,RunScript(special://skin/resources/marvin.py,setup),00:03,silent)</onload>
+	<onload>ReplaceWindow($INFO[System.StartupWindow])</onload>
+	<controls>
+		<include>Background_Solid</include>
+	</controls>
+</window>

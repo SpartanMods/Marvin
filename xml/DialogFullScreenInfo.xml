@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Info key during playback: what is actually playing -->
+<window>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<control type="group">
+			<left>96</left><top>96</top><width>760</width><height>520</height>
+			<include content="Panel_Glass"/>
+			<control type="label"><left>40</left><top>28</top><width>680</width><height>48</height><font>LabelBold</font><label>$VAR[Player_Title]</label></control>
+			<control type="grouplist">
+				<left>40</left><top>96</top><width>680</width><height>400</height><itemgap>0</itemgap>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[291]"/><param name="value" value="$INFO[VideoPlayer.VideoResolution]$INFO[Player.Process(videowidth),  ·  ,]$INFO[Player.Process(videoheight), x ,]"/></include>
+				<include content="InfoRow"><param name="label" value="HDR"/><param name="value" value="$INFO[VideoPlayer.HdrType]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[31180]"/><param name="value" value="$INFO[VideoPlayer.VideoCodec]$INFO[Player.Process(videodecoder),  ·  ,]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[292]"/><param name="value" value="$VAR[Player_AudioLabel]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[287]"/><param name="value" value="$VAR[Player_SubtitleLabel]"/></include>
+				<include content="InfoRow"><param name="label" value="FPS"/><param name="value" value="$INFO[Player.Process(videofps)]"/></include>
+				<include content="InfoRow"><param name="label" value="$LOCALIZE[31181]"/><param name="value" value="$INFO[Player.Process(pixformat)]$INFO[Player.Process(videodar),  ·  ,]"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

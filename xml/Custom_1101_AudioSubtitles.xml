@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Audio & Subtitles panel: everything you adjust mid-film, in one place. -->
+<window type="dialog" id="1101">
+	<defaultcontrol always="true">9101</defaultcontrol>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<control type="group">
+			<left>96</left>
+			<top>420</top>
+			<width>1440</width>
+			<height>540</height>
+			<include content="Panel_Glass"/>
+			<!-- Audio -->
+			<control type="label">
+				<left>48</left><top>32</top><width>620</width><height>44</height>
+				<font>CaptionCaps</font><textcolor>text_faint</textcolor>
+				<label>[UPPERCASE]$LOCALIZE[292][/UPPERCASE]</label>
+			</control>
+			<control type="grouplist" id="9101">
+				<left>40</left><top>84</top><width>640</width><height>420</height>
+				<onright>9102</onright>
+				<itemgap>6</itemgap>
+				<include content="AS_Row"><param name="id" value="110"/><param name="label" value="$LOCALIZE[31132]"/><param name="value" value="$VAR[Player_AudioLabel]"/><param name="onclick" value="Action(AudioNextLanguage)"/></include>
+				<include content="AS_Row"><param name="id" value="111"/><param name="label" value="$LOCALIZE[297]"/><param name="value" value="$INFO[Player.AudioDelay]"/><param name="onclick" value="Action(AudioDelay)"/></include>
+				<include content="AS_Row"><param name="id" value="112"/><param name="label" value="$LOCALIZE[31133]"/><param name="onclick" value="ActivateWindow(osdaudiosettings)"/></include>
+			</control>
+			<!-- Subtitles -->
+			<control type="label">
+				<left>768</left><top>32</top><width>620</width><height>44</height>
+				<font>CaptionCaps</font><textcolor>text_faint</textcolor>
+				<label>[UPPERCASE]$LOCALIZE[287][/UPPERCASE]</label>
+			</control>
+			<control type="grouplist" id="9102">
+				<left>760</left><top>84</top><width>640</width><height>420</height>
+				<onleft>9101</onleft>
+				<itemgap>6</itemgap>
+				<include content="AS_Row"><param name="id" value="120"/><param name="label" value="$LOCALIZE[31134]"/><param name="value" value="$VAR[Player_SubtitleOnOff]"/><param name="onclick" value="Action(ShowSubtitles)"/></include>
+				<include content="AS_Row"><param name="id" value="121"/><param name="label" value="$LOCALIZE[31132]"/><param name="value" value="$VAR[Player_SubtitleLabel]"/><param name="onclick" value="Action(NextSubtitle)"/><param name="visible" value="VideoPlayer.HasSubtitles"/></include>
+				<include content="AS_Row"><param name="id" value="122"/><param name="label" value="$LOCALIZE[22006]"/><param name="value" value="$INFO[Player.SubtitleDelay]"/><param name="onclick" value="Action(SubtitleDelay)"/><param name="visible" value="VideoPlayer.HasSubtitles"/></include>
+				<include content="AS_Row"><param name="id" value="123"/><param name="label" value="$LOCALIZE[31135]"/><param name="onclick" value="ActivateWindow(subtitlesearch)"/><param name="visible" value="$EXP[Has_SubtitleAddon]"/></include>
+				<include content="AS_Row"><param name="id" value="124"/><param name="label" value="$LOCALIZE[31136]"/><param name="onclick" value="ActivateWindow(osdsubtitlesettings)"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

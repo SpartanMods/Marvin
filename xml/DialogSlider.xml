@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi: 10 label, 11 slider, 12 value (audio/subtitle delay, etc.) -->
+<window>
+	<defaultcontrol always="true">11</defaultcontrol>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<control type="group">
+			<centerleft>50%</centerleft><bottom>140</bottom><width>900</width><height>170</height>
+			<include content="Panel_Glass"/>
+			<control type="label" id="10"><left>40</left><top>24</top><width>600</width><height>44</height><font>LabelBold</font></control>
+			<control type="label" id="12"><left>40</left><top>24</top><width>820</width><height>44</height><align>right</align><font>Mono</font><textcolor>text_muted</textcolor></control>
+			<control type="slider" id="11">
+				<left>40</left><top>100</top><width>820</width><height>24</height>
+				<texturesliderbar border="6" colordiffuse="progress_track">common/pill16.png</texturesliderbar>
+				<textureslidernib colordiffuse="text">common/nib.png</textureslidernib>
+				<textureslidernibfocus colordiffuse="text">common/nib.png</textureslidernibfocus>
+			</control>
+		</control>
+	</controls>
+</window>

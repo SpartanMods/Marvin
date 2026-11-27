@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi: 411 header, 412 path, 413 OK, 414 cancel, 415 new folder, 416 flip, 450 list, 451 thumbs -->
+<window>
+	<defaultcontrol always="true">450</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<include content="Dialog_Frame"><param name="w" value="1300"/><param name="h" value="900"/><param name="header_id" value="411"/></include>
+			<control type="label" id="412"><left>48</left><top>84</top><width>1200</width><height>36</height><font>Small</font><textcolor>text_faint</textcolor></control>
+			<control type="list" id="450">
+				<left>40</left><top>130</top><width>900</width><height>740</height>
+				<onright>9000</onright><pagecontrol>60</pagecontrol>
+				<include content="Template_IconRows"><param name="id" value="450"/><param name="w" value="900"/></include>
+			</control>
+			<control type="panel" id="451">
+				<left>40</left><top>130</top><width>900</width><height>740</height>
+				<onright>9000</onright><visible>false</visible>
+				<include content="Template_IconRows"><param name="id" value="451"/><param name="w" value="900"/></include>
+			</control>
+			<control type="scrollbar" id="60"><left>950</left><top>130</top><height>730</height><onleft>450</onleft><onright>9000</onright></control>
+			<control type="grouplist" id="9000">
+				<left>990</left><top>130</top><width>270</width><height>740</height>
+				<onleft>450</onleft><itemgap>14</itemgap>
+				<include content="Dialog_Button"><param name="id" value="413"/><param name="label" value="$LOCALIZE[186]"/></include>
+				<include content="Dialog_Button"><param name="id" value="414"/><param name="label" value="$LOCALIZE[222]"/></include>
+				<include content="Dialog_Button"><param name="id" value="415"/><param name="label" value="$LOCALIZE[119]"/></include>
+				<include content="Dialog_Button"><param name="id" value="416"/><param name="label" value="$LOCALIZE[20325]"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

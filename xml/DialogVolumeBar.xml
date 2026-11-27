@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<include>Anim_Window</include>
+	<controls>
+		<control type="group">
+			<right>96</right><top>60</top><width>420</width><height>80</height>
+			<include content="Panel_Glass"/>
+			<control type="label">
+				<left>24</left><width>56</width><height>80</height>
+				<align>center</align>
+				<font>Icon32</font>
+				<label>$VAR[Volume_Icon]</label>
+			</control>
+			<control type="progress" id="29999">
+				<left>96</left><top>36</top><width>290</width><height>8</height>
+				<texturebg border="4" colordiffuse="progress_track">common/pill16.png</texturebg>
+				<midtexture border="4" colordiffuse="progress_fill">common/pill16.png</midtexture>
+				<info>Player.Volume</info>
+			</control>
+		</control>
+	</controls>
+</window>

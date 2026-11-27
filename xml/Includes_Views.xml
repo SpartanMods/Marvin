@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Library views (MyVideoNav). Each view's <visible> decides where it applies, so
+	Kodi falls back to the first applicable view in <views> order:
+	  50 Poster Wall   movies, shows, collections (default)
+	  53 Episode List  episodes (landscape cards + season tabs)
+	  54 Episode List  seasons (season posters)
+	  52 List          everything else (files, genres, sources, ...)
+	OK on a movie/episode opens Info; the Play key plays directly.
+-->
+<includes>
+	<variable name="View_Background">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value condition="!String.IsEmpty(Container.Art(tvshow.fanart))">$INFO[Container.Art(tvshow.fanart)]</value>
+		<value>$INFO[Container.Art(fanart)]</value>
+	</variable>
+
+	<include name="View_Header">
+		<control type="group">
+			<left>96</left>
+			<top>40</top>
+			<control type="grouplist">
+				<width>1300</width>
+				<height>60</height>
+				<orientation>horizontal</orientation>
+				<itemgap>20</itemgap>
+				<control type="label">
+					<width>auto</width>
+					<height>60</height>
+					<font>Title</font>
+					<label>$VAR[View_Title]</label>
+				</control>
+				<control type="label">
+					<width>auto</width>
+					<height>60</height>
+					<font>Meta</font>
+					<textcolor>text_faint</textcolor>
+					<label>$INFO[Container.NumItems]</label>
+					<visible>Integer.IsGreater(Container.NumItems,0)</visible>
+				</control>
+			</control>
+		</control>
+		<include>Clock</include>
+	</include>
+
+	<!-- Shared behaviour for library containers -->
+	<include name="View_Common">
+		<onclick condition="$EXP[Content_Playable]">Action(Info)</onclick>
+		<pagecontrol>60</pagecontrol>
+		<preloaditems>2</preloaditems>
+	</include>
+
+	<!-- ============ 50 Poster Wall ============ -->
+	<include name="View_50_PosterWall">
+		<control type="group">
+			<visible>Control.IsVisible(50)</visible>
+			<include>Anim_Visible</include>
+			<!-- Info strip for the focused title -->
+			<control type="group">
+				<left>96</left>
+				<top>118</top>
+				<control type="group">
+					<include content="Logo">
+						<param name="width" value="620"/>
+						<param name="height" value="104"/>
+						<param name="font" value="TitleLarge"/>
+						<param name="fb_top" value="34"/><param name="fb_h" value="70"/>
+					</include>
+				</control>
+				<control type="group">
+					<top>118</top>
+					<visible>!ListItem.IsParentFolder</visible>
+					<include content="MetaLine"/>
+				</control>
+			</control>
+		</control>
+		<control type="panel" id="50">
+			<left>68</left>
+			<top>284</top>
+			<width>1752</width>
+			<height>796</height>
+			<onleft>noop</onleft>
+			<onright>noop</onright>
+			<onup>noop</onup>
+			<ondown>noop</ondown>
+			<orientation>vertical</orientation>
+			<viewtype label="31100">list</viewtype>
+			<visible>$EXP[Content_PosterWall]</visible>
+			<include>View_Common</include>
+			<include content="Layouts_Poster">
+				<param name="id" value="50"/>
+				<param name="w" value="222"/><param name="h" value="333"/>
+				<param name="cellw" value="246"/><param name="cellh" value="381"/>
+				<param name="pad" value="28"/>
+				<param name="pw" value="194"/><param name="pt" value="313"/>
+				<param name="gw" value="302"/><param name="gh" value="413"/>
+			</include>
+		</control>
+	</include>
+
+	<!-- ============ 53 / 54 Episode List ============ -->
+	<include name="View_EpisodicHero">
+		<control type="group">
+			<left>96</left>
+			<top>118</top>
+			<control type="group">
+				<include content="Logo">
+					<param name="width" value="640"/>
+					<param name="height" value="150"/>
+					<param name="font" value="TitleLarge"/>
+					<param name="fb_top" value="80"/><param name="fb_h" value="70"/>
+				</include>
+			</control>
+			<!-- Episodes: focused episode title + meta + plot -->
+			<control type="group">
+				<top>172</top>
+				<visible>Container.Content(episodes) + !ListItem.IsParentFolder</visible>
+				<control type="label">
+					<width>1100</width>
+					<height>50</height>
+					<font>Title</font>
+					<label>$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</label>
+				</control>
+				<control type="group">
+					<top>54</top>
+					<include content="MetaLine"><param name="genre" value="false"/></include>
+				</control>
+				<control type="textbox">
+					<top>104</top>
+					<width>1000</width>
+					<height>132</height>
+					<label>$INFO[ListItem.Plot]</label>
+				</control>
+			</control>
+			<!-- Seasons: show meta + plot -->
+			<control type="group">
+				<top>172</top>
+				<visible>Container.Content(seasons)</visible>
+				<control type="label">
+					<width>1100</width>
+					<height>50</height>
+					<font>Title</font>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<top>54</top>
+					<width>1100</width>
+					<height>40</height>
+					<font>Meta</font>
+					<textcolor>text_muted</textcolor>
+					<label>$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]$INFO[ListItem.Property(UnWatchedEpisodes),  ·  , $LOCALIZE[16101]]</label>
+				</control>
+				<control type="textbox">
+					<top>104</top>
+					<width>1000</width>
+					<height>132</height>
+					<label>$INFO[ListItem.Plot]</label>
+				</control>
+			</control>
+		</control>
+	</include>
+
+	<include name="View_53_Episodes">
+		<control type="group">
+			<visible>Control.IsVisible(53) | Control.IsVisible(54)</visible>
+			<include>Anim_Visible</include>
+			<include>View_EpisodicHero</include>
+		</control>
+		<!-- Season tabs (episodes only) -->
+		<control type="list" id="5310">
+			<left>72</left>
+			<top>560</top>
+			<width>1800</width>
+			<height>64</height>
+			<orientation>horizontal</orientation>
+			<ondown>53</ondown>
+			<visible>Control.IsVisible(53) + Integer.IsGreater(Container(5310).NumItems,1)</visible>
+			<content target="videos">videodb://tvshows/titles/$INFO[Container(53).ListItem.TvShowDBID]/</content>
+			<onclick>Container.Update($INFO[Container(5310).ListItem.FolderPath],replace)</onclick>
+			<itemlayout width="220" height="64">
+				<control type="label">
+					<left>24</left>
+					<width>180</width>
+					<height>56</height>
+					<font>LabelBold</font>
+					<textcolor>$VAR[View_TabColor]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout width="220" height="64">
+				<control type="image">
+					<width>200</width>
+					<height>56</height>
+					<texture border="24" colordiffuse="focus_fill">common/pill48.png</texture>
+					<visible>Control.HasFocus(5310)</visible>
+				</control>
+				<control type="label">
+					<left>24</left>
+					<width>160</width>
+					<height>56</height>
+					<font>LabelBold</font>
+					<textcolor>text_dark</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>Control.HasFocus(5310)</visible>
+				</control>
+				<control type="label">
+					<left>24</left>
+					<width>180</width>
+					<height>56</height>
+					<font>LabelBold</font>
+					<textcolor>$VAR[View_TabColor]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>!Control.HasFocus(5310)</visible>
+				</control>
+			</focusedlayout>
+		</control>
+		<control type="list" id="53">
+			<left>56</left>
+			<top>612</top>
+			<width>1864</width>
+			<height>440</height>
+			<orientation>horizontal</orientation>
+			<onup>5310</onup>
+			<viewtype label="31101">list</viewtype>
+			<visible>Container.Content(episodes)</visible>
+			<include>View_Common</include>
+			<include content="Layouts_Landscape">
+				<param name="id" value="53"/>
+				<param name="w" value="384"/><param name="h" value="216"/>
+				<param name="cellw" value="412"/><param name="cellh" value="400"/>
+				<param name="pad" value="40"/>
+				<param name="caption" value="true"/>
+			</include>
+		</control>
+		<control type="list" id="54">
+			<left>56</left>
+			<top>560</top>
+			<width>1864</width>
+			<height>460</height>
+			<orientation>horizontal</orientation>
+			<viewtype label="31101">list</viewtype>
+			<visible>Container.Content(seasons)</visible>
+			<include>View_Common</include>
+			<include content="Layouts_Poster">
+				<param name="id" value="54"/>
+				<param name="w" value="240"/><param name="h" value="360"/>
+				<param name="cellw" value="272"/><param name="cellh" value="440"/>
+				<param name="pad" value="40"/>
+				<param name="pw" value="212"/><param name="pt" value="340"/>
+				<param name="gw" value="320"/><param name="gh" value="440"/>
+			</include>
+		</control>
+	</include>
+
+	<!-- ============ 52 List ============ -->
+	<include name="View_52_List">
+		<control type="group">
+			<visible>Control.IsVisible(52)</visible>
+			<include>Anim_Visible</include>
+			<control type="image">
+				<left>1060</left>
+				<top>150</top>
+				<width>760</width>
+				<height>560</height>
+				<aspectratio aligny="top">keep</aspectratio>
+				<fadetime>200</fadetime>
+				<texture background="true">$VAR[View_ListArt]</texture>
+			</control>
+			<control type="textbox">
+				<left>1060</left>
+				<top>740</top>
+				<width>760</width>
+				<height>260</height>
+				<label>$INFO[ListItem.Plot]</label>
+			</control>
+		</control>
+		<control type="list" id="52">
+			<left>72</left>
+			<top>140</top>
+			<width>900</width>
+			<height>900</height>
+			<onright>60</onright>
+			<viewtype label="31102">list</viewtype>
+			<include>View_Common</include>
+			<itemlayout height="72" width="900">
+				<control type="label">
+					<left>56</left>
+					<width>800</width>
+					<height>72</height>
+					<font>Label</font>
+					<textcolor>text_muted</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>56</left>
+					<width>800</width>
+					<height>72</height>
+					<align>right</align>
+					<font>Small</font>
+					<textcolor>text_faint</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout height="72" width="900">
+				<control type="image">
+					<left>24</left>
+					<width>856</width>
+					<height>72</height>
+					<texture border="24" colordiffuse="focus_fill">common/pill48.png</texture>
+					<visible>Control.HasFocus(52)</visible>
+				</control>
+				<control type="label">
+					<left>56</left>
+					<width>800</width>
+					<height>72</height>
+					<font>LabelBold</font>
+					<textcolor>text_dark</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>Control.HasFocus(52)</visible>
+				</control>
+				<control type="label">
+					<left>56</left>
+					<width>800</width>
+					<height>72</height>
+					<font>Label</font>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>!Control.HasFocus(52)</visible>
+				</control>
+				<control type="label">
+					<left>56</left>
+					<width>800</width>
+					<height>72</height>
+					<align>right</align>
+					<font>Small</font>
+					<textcolor>text_faint</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+					<visible>!Control.HasFocus(52)</visible>
+				</control>
+			</focusedlayout>
+		</control>
+		<control type="scrollbar" id="60">
+			<left>990</left>
+			<top>150</top>
+			<height>880</height>
+			<onleft>52</onleft>
+			<orientation>vertical</orientation>
+			<visible>Control.IsVisible(52)</visible>
+		</control>
+	</include>
+	<variable name="View_TabColor">
+		<value condition="String.IsEqual(ListItem.Season,Container(53).ListItem.Season)">text</value>
+		<value>text_faint</value>
+	</variable>
+	<variable name="View_Title">
+		<value condition="Container.Content(movies)">$LOCALIZE[342]</value>
+		<value condition="Container.Content(tvshows)">$LOCALIZE[20343]</value>
+		<value condition="Container.Content(sets)">$LOCALIZE[31014]</value>
+		<value>$INFO[Container.FolderName]</value>
+	</variable>
+	<variable name="View_ListArt">
+		<value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+		<value>$INFO[ListItem.Art(thumb)]</value>
+	</variable>
+</includes>

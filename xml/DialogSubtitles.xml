@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Subtitle search. Kodi: 100 name, 110 logo, 120 results, 130 exists, 140 status, 150 services, 160 manual search -->
+<window>
+	<defaultcontrol always="true">120</defaultcontrol>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<control type="group">
+			<left>96</left><top>140</top><width>1728</width><height>800</height>
+			<include content="Panel_Glass"/>
+			<control type="image" id="110"><left>40</left><top>30</top><width>56</width><height>56</height><aspectratio>keep</aspectratio></control>
+			<control type="label" id="100"><left>116</left><top>30</top><width>1000</width><height>56</height><font>Title</font></control>
+			<control type="label" id="140"><left>40</left><top>30</top><width>1648</width><height>56</height><align>right</align><font>Small</font><textcolor>text_muted</textcolor></control>
+			<control type="label" id="130"><left>40</left><top>740</top><width>1648</width><height>36</height><font>Small</font><textcolor>text_faint</textcolor></control>
+			<control type="list" id="150">
+				<left>32</left><top>110</top><width>420</width><height>520</height>
+				<onright>120</onright><ondown>160</ondown>
+				<include content="Dialog_ListLayouts"><param name="id" value="150"/><param name="w" value="420"/><param name="lw" value="360"/><param name="label2" value="false"/></include>
+			</control>
+			<control type="group"><left>32</left><top>650</top><include content="Dialog_Button"><param name="id" value="160"/><param name="label" value="$LOCALIZE[24121]"/><param name="width" value="400"/></include></control>
+			<control type="list" id="120">
+				<left>480</left><top>110</top><width>1216</width><height>620</height>
+				<onleft>150</onleft>
+				<include content="Dialog_ListLayouts"><param name="id" value="120"/><param name="w" value="1216"/><param name="lw" value="1160"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

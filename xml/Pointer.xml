@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mouse pointer -->
+<window>
+	<controls>
+		<control type="image" id="1"><width>28</width><height>28</height><texture colordiffuse="text">common/circle.png</texture></control>
+		<control type="image" id="2"><width>28</width><height>28</height><texture colordiffuse="text">common/circle.png</texture></control>
+		<control type="image" id="3"><width>28</width><height>28</height><texture colordiffuse="text_muted">common/circle.png</texture></control>
+		<control type="image" id="4"><width>28</width><height>28</height><texture colordiffuse="text">common/circle.png</texture></control>
+	</controls>
+</window>

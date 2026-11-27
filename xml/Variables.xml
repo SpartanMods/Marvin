@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Variables. Icons are Phosphor code points (fonts/Phosphor*.ttf), used with the
+	Icon* / IconFill* fonts. Art and flag variables read the plain ListItem, so they
+	work inside container layouts and in the info dialog.
+-->
+<includes>
+	<!-- ============ Icons ============ -->
+	<variable name="Icon_Play"><value>&#xe3d0;</value></variable>
+	<variable name="Icon_Pause"><value>&#xe39e;</value></variable>
+	<variable name="Icon_Stop"><value>&#xe46c;</value></variable>
+	<variable name="Icon_Next"><value>&#xe5a6;</value></variable>
+	<variable name="Icon_Prev"><value>&#xe5a4;</value></variable>
+	<variable name="Icon_Subtitles"><value>&#xe1a8;</value></variable>
+	<variable name="Icon_CC"><value>&#xe1a4;</value></variable>
+	<variable name="Icon_Audio"><value>&#xe44a;</value></variable>
+	<variable name="Icon_Mute"><value>&#xe45c;</value></variable>
+	<variable name="Icon_Chapters"><value>&#xe2f2;</value></variable>
+	<variable name="Icon_Bookmark"><value>&#xe0ea;</value></variable>
+	<variable name="Icon_Sliders"><value>&#xe434;</value></variable>
+	<variable name="Icon_Search"><value>&#xe30c;</value></variable>
+	<variable name="Icon_Movie"><value>&#xe8c2;</value></variable>
+	<variable name="Icon_TV"><value>&#xeae6;</value></variable>
+	<variable name="Icon_Star"><value>&#xe46a;</value></variable>
+	<variable name="Icon_Heart"><value>&#xe2a8;</value></variable>
+	<variable name="Icon_Gear"><value>&#xe270;</value></variable>
+	<variable name="Icon_Power"><value>&#xe3da;</value></variable>
+	<variable name="Icon_Check"><value>&#xe182;</value></variable>
+	<variable name="Icon_CheckCircle"><value>&#xe184;</value></variable>
+	<variable name="Icon_CaretRight"><value>&#xe13a;</value></variable>
+	<variable name="Icon_CaretLeft"><value>&#xe138;</value></variable>
+	<variable name="Icon_CaretDown"><value>&#xe136;</value></variable>
+	<variable name="Icon_CaretUp"><value>&#xe13c;</value></variable>
+	<variable name="Icon_Close"><value>&#xe4f6;</value></variable>
+	<variable name="Icon_Info"><value>&#xe2ce;</value></variable>
+	<variable name="Icon_Refresh"><value>&#xe036;</value></variable>
+	<variable name="Icon_People"><value>&#xe4d6;</value></variable>
+	<variable name="Icon_Eye"><value>&#xe220;</value></variable>
+	<variable name="Icon_EyeSlash"><value>&#xe224;</value></variable>
+	<variable name="Icon_More"><value>&#xe206;</value></variable>
+	<variable name="Icon_Filter"><value>&#xe266;</value></variable>
+	<variable name="Icon_Sort"><value>&#xe444;</value></variable>
+	<variable name="Icon_Grid"><value>&#xe464;</value></variable>
+	<variable name="Icon_Rows"><value>&#xe5a2;</value></variable>
+	<variable name="Icon_List"><value>&#xe2f4;</value></variable>
+	<variable name="Icon_Trailer"><value>&#xe58c;</value></variable>
+	<variable name="Icon_Globe"><value>&#xe288;</value></variable>
+	<variable name="Icon_Warning"><value>&#xe4e0;</value></variable>
+	<variable name="Icon_User"><value>&#xe4c4;</value></variable>
+	<variable name="Icon_Film"><value>&#xe792;</value></variable>
+	<variable name="Icon_Folder"><value>&#xe24a;</value></variable>
+	<variable name="Icon_Trash"><value>&#xe4a6;</value></variable>
+	<variable name="Icon_Plus"><value>&#xe3d4;</value></variable>
+	<variable name="Icon_Minus"><value>&#xe32a;</value></variable>
+	<variable name="Icon_Sync"><value>&#xe094;</value></variable>
+	<variable name="Icon_Moon"><value>&#xe330;</value></variable>
+	<variable name="Icon_Exit"><value>&#xe42a;</value></variable>
+
+	<!-- ============ Artwork (plain ListItem) ============ -->
+	<variable name="Art_Poster">
+		<value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
+		<value>$INFO[ListItem.Art(thumb)]</value>
+	</variable>
+	<variable name="Art_Landscape">
+		<value condition="ListItem.IsCollection + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape))">$INFO[ListItem.Art(tvshow.landscape)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value>$INFO[ListItem.Art(thumb)]</value>
+	</variable>
+	<variable name="Art_Fanart">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value>$INFO[ListItem.Art(thumb)]</value>
+	</variable>
+	<!-- Title used when there is no logo: show title for episodes/seasons -->
+	<variable name="Label_LogoTitle">
+		<value condition="Container.Content(episodes) + String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
+		<value condition="!String.IsEmpty(ListItem.TVShowTitle)">$INFO[ListItem.TVShowTitle]</value>
+		<value>$INFO[ListItem.Title]</value>
+	</variable>
+
+	<variable name="Label_CardSubtitle">
+		<value condition="Container.Content(episodes) + String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Duration(m),,m]$INFO[ListItem.Premiered,  ·  ,]</value>
+		<value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Season,S,]$INFO[ListItem.Episode, · E,]$INFO[ListItem.Title,  ·  ,]</value>
+		<value condition="String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Property(UnWatchedEpisodes),,  $LOCALIZE[16101]]</value>
+		<value>$INFO[ListItem.Year]$INFO[ListItem.Genre,  ·  ,]</value>
+	</variable>
+
+	<!-- ============ Media flags (plain ListItem) ============ -->
+	<variable name="Flag_Resolution">
+		<value condition="String.IsEqual(ListItem.VideoResolution,4K) | String.IsEqual(ListItem.VideoResolution,2160)">4K</value>
+		<value condition="String.IsEqual(ListItem.VideoResolution,1080) | String.IsEqual(ListItem.VideoResolution,720)">HD</value>
+		<value condition="!String.IsEmpty(ListItem.VideoResolution)">SD</value>
+	</variable>
+	<variable name="Flag_HDR">
+		<value condition="String.IsEqual(ListItem.HdrType,dolbyvision)">Dolby Vision</value>
+		<value condition="String.IsEqual(ListItem.HdrType,hdr10plus)">HDR10+</value>
+		<value condition="String.IsEqual(ListItem.HdrType,hdr10)">HDR10</value>
+		<value condition="String.IsEqual(ListItem.HdrType,hlg)">HLG</value>
+	</variable>
+	<variable name="Flag_Audio">
+		<value condition="String.IsEqual(ListItem.AudioCodec,truehd)">TrueHD</value>
+		<value condition="String.StartsWith(ListItem.AudioCodec,dtshd_ma)">DTS-HD MA</value>
+		<value condition="String.StartsWith(ListItem.AudioCodec,dtshd)">DTS-HD</value>
+		<value condition="String.IsEqual(ListItem.AudioCodec,dca) | String.IsEqual(ListItem.AudioCodec,dts)">DTS</value>
+		<value condition="String.IsEqual(ListItem.AudioCodec,eac3)">Dolby Digital+</value>
+		<value condition="String.IsEqual(ListItem.AudioCodec,ac3)">Dolby Digital</value>
+		<value condition="String.IsEqual(ListItem.AudioCodec,aac)">AAC</value>
+		<value condition="String.IsEqual(ListItem.AudioCodec,flac)">FLAC</value>
+		<value condition="!String.IsEmpty(ListItem.AudioCodec)">$INFO[ListItem.AudioCodec]</value>
+	</variable>
+	<variable name="Flag_Channels">
+		<value condition="String.IsEqual(ListItem.AudioChannels,8)">7.1</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,6)">5.1</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,2)">Stereo</value>
+		<value condition="String.IsEqual(ListItem.AudioChannels,1)">Mono</value>
+	</variable>
+
+	<!-- ============ Player ============ -->
+	<variable name="Volume_Icon">
+		<value condition="Player.Muted">$VAR[Icon_Mute]</value>
+		<value>$VAR[Icon_Audio]</value>
+	</variable>
+	<variable name="Player_Title">
+		<value condition="!String.IsEmpty(VideoPlayer.TVShowTitle)">$INFO[VideoPlayer.TVShowTitle]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Title)">$INFO[VideoPlayer.Title]</value>
+		<value>$INFO[Player.Title]</value>
+	</variable>
+	<variable name="Player_Subtitle">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,S,]$INFO[VideoPlayer.Episode, · E,]$INFO[VideoPlayer.Title,  ·  ,]</value>
+		<value>$INFO[VideoPlayer.Year]$INFO[VideoPlayer.Genre,  ·  ,]</value>
+	</variable>
+	<variable name="Player_AudioLabel">
+		<value condition="!String.IsEmpty(VideoPlayer.AudioLanguage)">$INFO[VideoPlayer.AudioLanguage]$INFO[VideoPlayer.AudioCodec,  ·  ,]$INFO[VideoPlayer.AudioChannels,  ·  , ch]</value>
+		<value>$INFO[VideoPlayer.AudioCodec]$INFO[VideoPlayer.AudioChannels,  ·  , ch]</value>
+	</variable>
+	<variable name="Player_SubtitleOnOff">
+		<value condition="VideoPlayer.SubtitlesEnabled">$LOCALIZE[31120]</value>
+		<value>$LOCALIZE[1223]</value>
+	</variable>
+	<variable name="OSD_Hint">
+		<value condition="Control.HasFocus(5002)">$LOCALIZE[31137]</value>
+		<value condition="Control.HasFocus(5003)">$LOCALIZE[31138]</value>
+		<value condition="Control.HasFocus(5004)">$LOCALIZE[31139]</value>
+		<value condition="Control.HasFocus(5005)">$LOCALIZE[31140]</value>
+	</variable>
+	<variable name="Player_SubtitleLabel">
+		<value condition="!String.IsEmpty(VideoPlayer.SubtitlesLanguage)">$INFO[VideoPlayer.SubtitlesLanguage]</value>
+		<value>$LOCALIZE[31120]</value>
+	</variable>
+</includes>

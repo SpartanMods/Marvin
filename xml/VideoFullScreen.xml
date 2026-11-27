@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi renders the video; Marvin's overlays live in DialogSeekBar (seek + pause) and VideoOSD. -->
+<window>
+	<controls/>
+</window>

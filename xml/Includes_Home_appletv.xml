@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Apple TV home layout: GEOMETRY ONLY. Minimal top menu, full-bleed art, large
+	hero that compacts once focus goes below the first row.
+	Rows: expanded top 640 (row 1 + header peek of row 2); deep top 300 (two rows).
+-->
+<includes>
+	<include name="Home_Geometry_Menu">
+		<left>72</left>
+		<top>36</top>
+		<width>1400</width>
+		<height>60</height>
+		<orientation>horizontal</orientation>
+		<itemgap>4</itemgap>
+	</include>
+	<include name="Home_Geometry_Hero">
+		<left>96</left>
+		<top>220</top>
+		<width>1100</width>
+		<height>400</height>
+	</include>
+	<!-- Compact hero shown while browsing deeper rows -->
+	<include name="Home_Geometry_HeroCompact">
+		<left>96</left>
+		<top>128</top>
+		<width>1100</width>
+		<height>150</height>
+	</include>
+	<include name="Home_Geometry_Rows">
+		<left>0</left>
+		<top>640</top>
+		<width>1920</width>
+		<height>800</height>
+		<orientation>vertical</orientation>
+		<itemgap>0</itemgap>
+		<animation type="Conditional" condition="$EXP[Home_Deep]" reversible="true">
+			<effect type="slide" end="0,-340" time="260" tween="cubic" easing="out"/>
+		</animation>
+	</include>
+</includes>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: mini player controls -->
+<window>
+	<defaultcontrol always="true">201</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<control type="group">
+			<centerleft>50%</centerleft><top>80</top><width>560</width><height>140</height>
+			<include content="Panel_Glass"/>
+			<control type="grouplist" id="201">
+				<left>40</left><top>28</top><width>480</width><height>84</height><orientation>horizontal</orientation><itemgap>16</itemgap><align>center</align>
+				<include content="OSD_IconButton"><param name="id" value="600"/><param name="icon" value="$VAR[Icon_Prev]"/><param name="onclick" value="PlayerControl(Previous)"/></include>
+				<include content="OSD_IconButton"><param name="id" value="602"/><param name="icon" value="$VAR[Icon_Pause]"/><param name="onclick" value="PlayerControl(Play)"/></include>
+				<include content="OSD_IconButton"><param name="id" value="603"/><param name="icon" value="$VAR[Icon_Stop]"/><param name="onclick" value="PlayerControl(Stop)"/></include>
+				<include content="OSD_IconButton"><param name="id" value="605"/><param name="icon" value="$VAR[Icon_Next]"/><param name="onclick" value="PlayerControl(Next)"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

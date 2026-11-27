@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: visualisation (control 2) -->
+<window>
+	<controls>
+		<control type="visualisation" id="2"><left>0</left><top>0</top><width>1920</width><height>1080</height></control>
+	</controls>
+</window>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Chapters & bookmarks. Kodi: 11 thumbnails, 2 add, 3 clear, 4 add episode bookmark -->
+<window>
+	<defaultcontrol always="true">11</defaultcontrol>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<control type="group">
+			<left>96</left><top>560</top><width>1728</width><height>400</height>
+			<include content="Panel_Glass"/>
+			<control type="label"><left>40</left><top>24</top><width>800</width><height>48</height><font>LabelBold</font><label>$LOCALIZE[31137]</label></control>
+			<control type="panel" id="11">
+				<left>16</left><top>76</top><width>1696</width><height>230</height>
+				<orientation>horizontal</orientation>
+				<ondown>9001</ondown>
+				<include content="Layouts_Landscape">
+					<param name="id" value="11"/><param name="w" value="256"/><param name="h" value="144"/>
+					<param name="cellw" value="284"/><param name="cellh" value="230"/><param name="pad" value="24"/>
+					<param name="pw" value="228"/><param name="pt" value="124"/><param name="gw" value="336"/><param name="gh" value="224"/>
+					<param name="caption" value="false"/>
+				</include>
+			</control>
+			<control type="grouplist" id="9001">
+				<left>40</left><top>310</top><width>1648</width><height>72</height>
+				<orientation>horizontal</orientation><itemgap>16</itemgap>
+				<onup>11</onup>
+				<include content="Dialog_Button"><param name="id" value="2"/><param name="label" value="$LOCALIZE[294]"/><param name="width" value="320"/></include>
+				<include content="Dialog_Button"><param name="id" value="4"/><param name="label" value="$LOCALIZE[20406]"/><param name="width" value="400"/></include>
+				<include content="Dialog_Button"><param name="id" value="3"/><param name="label" value="$LOCALIZE[296]"/><param name="width" value="320"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

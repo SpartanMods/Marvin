@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: minimal music OSD -->
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include content="Player_SeekBar"><param name="top" value="980"/></include>
+		<control type="grouplist" id="9000">
+			<left>96</left><top>860</top><width>1000</width><height>84</height><orientation>horizontal</orientation><itemgap>20</itemgap>
+			<include content="OSD_IconButton"><param name="id" value="600"/><param name="icon" value="$VAR[Icon_Prev]"/><param name="onclick" value="PlayerControl(Previous)"/></include>
+			<include content="OSD_IconButton"><param name="id" value="601"/><param name="icon" value="$VAR[Icon_Pause]"/><param name="onclick" value="PlayerControl(Play)"/></include>
+			<include content="OSD_IconButton"><param name="id" value="602"/><param name="icon" value="$VAR[Icon_Next]"/><param name="onclick" value="PlayerControl(Next)"/></include>
+			<include content="OSD_IconButton"><param name="id" value="603"/><param name="icon" value="$VAR[Icon_Stop]"/><param name="onclick" value="PlayerControl(Stop)"/></include>
+		</control>
+	</controls>
+</window>

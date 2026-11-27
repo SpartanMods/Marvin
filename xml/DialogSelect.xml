@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi: 1 heading, 2 count, 3 simple list, 6 detailed list, 5/8 extra buttons, 7 cancel -->
+<window>
+	<defaultcontrol always="true">3</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<include content="Dialog_Frame"><param name="w" value="1000"/><param name="h" value="820"/></include>
+			<control type="label" id="2">
+				<left>48</left><top>30</top><width>904</width><height>60</height>
+				<align>right</align>
+				<font>Meta</font>
+				<textcolor>text_faint</textcolor>
+			</control>
+			<control type="list" id="3">
+				<left>40</left><top>110</top><width>920</width><height>544</height>
+				<onright>9001</onright>
+				<ondown>9001</ondown>
+				<include content="Dialog_ListLayouts"><param name="id" value="3"/><param name="w" value="920"/><param name="lw" value="860"/></include>
+			</control>
+			<control type="list" id="6">
+				<left>40</left><top>110</top><width>920</width><height>544</height>
+				<onright>9001</onright>
+				<ondown>9001</ondown>
+				<itemlayout width="920" height="96">
+					<control type="image">
+						<left>16</left><top>12</top><width>72</width><height>72</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>108</left><top>10</top><width>780</width><height>40</height>
+						<font>Label</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>108</left><top>48</top><width>780</width><height>36</height>
+						<font>Small</font>
+						<textcolor>text_muted</textcolor>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout width="920" height="96">
+					<control type="image">
+						<width>920</width><height>96</height>
+						<texture border="14" colordiffuse="focus_fill">common/r14.png</texture>
+						<visible>Control.HasFocus(6)</visible>
+					</control>
+					<control type="image">
+						<left>16</left><top>12</top><width>72</width><height>72</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>108</left><top>10</top><width>780</width><height>40</height>
+						<font>LabelBold</font>
+						<textcolor>$VAR[Dialog_RowText_6]</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>108</left><top>48</top><width>780</width><height>36</height>
+						<font>Small</font>
+						<textcolor>$VAR[Dialog_RowText_6]</textcolor>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="grouplist" id="9001">
+				<left>48</left><top>700</top><width>904</width><height>80</height>
+				<orientation>horizontal</orientation>
+				<align>right</align>
+				<itemgap>16</itemgap>
+				<onup>3</onup>
+				<include content="Dialog_Button"><param name="id" value="5"/></include>
+				<include content="Dialog_Button"><param name="id" value="8"/></include>
+				<include content="Dialog_Button"><param name="id" value="7"/><param name="label" value="$LOCALIZE[222]"/></include>
+			</control>
+		</control>
+	</controls>
+</window>

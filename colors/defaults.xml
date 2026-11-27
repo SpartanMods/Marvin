@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Marvin palette. Names are semantic; never use raw hex in window XML. -->
+<colors>
+	<color name="bg">FF0B0B0F</color>
+	<color name="bg_raised">FF15151B</color>
+	<color name="bg_overlay">E60B0B0F</color>
+	<color name="glass">B31A1A22</color>
+	<color name="glass_strong">E01A1A22</color>
+	<color name="scrim">99000000</color>
+	<color name="scrim_side">E00B0B0F</color>
+	<color name="scrim_bottom">F20B0B0F</color>
+	<color name="scrim_strong">CC000000</color>
+	<color name="text">FFF2EFEA</color>
+	<color name="text_muted">99F2EFEA</color>
+	<color name="text_faint">59F2EFEA</color>
+	<color name="text_dark">FF0B0B0F</color>
+	<color name="accent">FFF2EFEA</color>
+	<color name="accent_soft">33F2EFEA</color>
+	<color name="hairline">1AF2EFEA</color>
+	<color name="focus_fill">FFF2EFEA</color>
+	<color name="focus_glow">66F2EFEA</color>
+	<color name="shadow">B3000000</color>
+	<color name="progress_track">33F2EFEA</color>
+	<color name="progress_fill">FFF2EFEA</color>
+	<color name="star">FFF5C451</color>
+	<color name="danger">FFE5484D</color>
+	<color name="dim_view">8C0B0B0F</color>
+	<color name="clear">00FFFFFF</color>
+</colors>

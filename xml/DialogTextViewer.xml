@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">5</defaultcontrol>
+	<include>Anim_Dialog</include>
+	<controls>
+		<include>Dialog_Scrim</include>
+		<control type="group">
+			<include content="Dialog_Frame"><param name="w" value="1400"/><param name="h" value="860"/></include>
+			<control type="textbox" id="5">
+				<left>48</left><top>110</top><width>1290</width><height>700</height>
+				<font>Body</font>
+				<textcolor>text</textcolor>
+				<pagecontrol>3000</pagecontrol>
+			</control>
+			<control type="scrollbar" id="3000">
+				<left>1360</left><top>110</top><height>700</height>
+				<orientation>vertical</orientation>
+				<onleft>5</onleft>
+			</control>
+		</control>
+	</controls>
+</window>

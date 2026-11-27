@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Dialog system: one frame, one button, one list-row style for every dialog. -->
+<includes>
+	<!-- Full-screen dim behind modal dialogs -->
+	<include name="Dialog_Scrim">
+		<control type="image">
+			<left>0</left><top>0</top><width>1920</width><height>1080</height>
+			<texture colordiffuse="scrim">common/white.png</texture>
+			<animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
+		</control>
+	</include>
+
+	<!-- Centered glass panel with a header label. Use inside a group. -->
+	<include name="Dialog_Frame">
+		<param name="w">900</param>
+		<param name="h">600</param>
+		<param name="header_id">1</param>
+		<param name="header"></param>
+		<definition>
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>$PARAM[w]</width>
+			<height>$PARAM[h]</height>
+			<include content="Panel_Glass"/>
+			<control type="label" id="$PARAM[header_id]">
+				<left>48</left>
+				<top>30</top>
+				<right>48</right>
+				<height>60</height>
+				<font>Title</font>
+				<label>$PARAM[header]</label>
+			</control>
+		</definition>
+	</include>
+
+	<include name="Dialog_Button">
+		<param name="id"/>
+		<param name="label"></param>
+		<param name="width">260</param>
+		<param name="height">72</param>
+		<param name="onclick">noop</param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<font>LabelBold</font>
+				<label>$PARAM[label]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textoffsetx>20</textoffsetx>
+				<textcolor>text</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<disabledcolor>text_faint</disabledcolor>
+				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+				<texturenofocus border="24" colordiffuse="accent_soft">common/pill48.png</texturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+
+	<!-- List rows: muted text, focused row = off-white pill with dark text -->
+	<include name="Dialog_ListLayouts">
+		<param name="id"/>
+		<param name="w">800</param>
+		<param name="h">68</param>
+		<param name="lw">740</param>
+		<param name="label2">true</param>
+		<definition>
+			<itemlayout width="$PARAM[w]" height="$PARAM[h]">
+				<control type="label">
+					<left>28</left><width>$PARAM[lw]</width><height>$PARAM[h]</height>
+					<font>Label</font>
+					<textcolor>text_muted</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>0</left><width>$PARAM[lw]</width><height>$PARAM[h]</height>
+					<align>right</align>
+					<font>Small</font>
+					<textcolor>text_faint</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+					<visible>$PARAM[label2]</visible>
+				</control>
+				<control type="label">
+					<left>0</left><width>$PARAM[lw]</width><height>$PARAM[h]</height>
+					<align>right</align>
+					<font>Icon32</font>
+					<label>$VAR[Icon_Check]</label>
+					<visible>ListItem.IsSelected</visible>
+				</control>
+			</itemlayout>
+			<focusedlayout width="$PARAM[w]" height="$PARAM[h]">
+				<control type="image">
+					<width>$PARAM[w]</width><height>$PARAM[h]</height>
+					<texture border="24" colordiffuse="focus_fill">common/pill48.png</texture>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="label">
+					<left>28</left><width>$PARAM[lw]</width><height>$PARAM[h]</height>
+					<font>LabelBold</font>
+					<textcolor>$VAR[Dialog_RowText_$PARAM[id]]</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>0</left><width>$PARAM[lw]</width><height>$PARAM[h]</height>
+					<align>right</align>
+					<font>Small</font>
+					<textcolor>$VAR[Dialog_RowText_$PARAM[id]]</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+					<visible>$PARAM[label2]</visible>
+				</control>
+				<control type="label">
+					<left>0</left><width>$PARAM[lw]</width><height>$PARAM[h]</height>
+					<align>right</align>
+					<font>Icon32</font>
+					<textcolor>$VAR[Dialog_RowText_$PARAM[id]]</textcolor>
+					<label>$VAR[Icon_Check]</label>
+					<visible>ListItem.IsSelected</visible>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+	<!-- Row text color per list id (focused list = dark text on the pill) -->
+	<variable name="Dialog_RowText_3"><value condition="Control.HasFocus(3)">text_dark</value><value>text</value></variable>
+	<variable name="Dialog_RowText_6"><value condition="Control.HasFocus(6)">text_dark</value><value>text</value></variable>
+	<variable name="Dialog_RowText_10"><value condition="Control.HasFocus(10)">text_dark</value><value>text</value></variable>
+	<variable name="Dialog_RowText_50"><value condition="Control.HasFocus(50)">text_dark</value><value>text</value></variable>
+	<variable name="Dialog_RowText_450"><value condition="Control.HasFocus(450)">text_dark</value><value>text</value></variable>
+	<variable name="Dialog_RowText_9000"><value condition="Control.HasFocus(9000)">text_dark</value><value>text</value></variable>
+
+	<!-- ============ Settings control templates (Kodi clones these) ============ -->
+	<include name="Settings_Templates">
+		<param name="w">1100</param>
+		<definition>
+			<control type="button" id="7">
+				<width>$PARAM[w]</width>
+				<include>Settings_RowLook</include>
+			</control>
+			<control type="radiobutton" id="8">
+				<width>$PARAM[w]</width>
+				<include>Settings_RowLook</include>
+				<radiowidth>48</radiowidth>
+				<radioheight>28</radioheight>
+								<textureradioonfocus colordiffuse="text_dark">common/pill16.png</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="text">common/pill16.png</textureradioonnofocus>
+				<textureradiooffocus colordiffuse="66000000">common/pill16.png</textureradiooffocus>
+				<textureradiooffnofocus colordiffuse="text_faint">common/pill16.png</textureradiooffnofocus>
+			</control>
+			<control type="spincontrolex" id="9">
+				<width>$PARAM[w]</width>
+				<include>Settings_RowLook</include>
+				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+				<spinwidth>32</spinwidth>
+				<spinheight>32</spinheight>
+				<textureup colordiffuse="clear">common/white.png</textureup>
+				<textureupfocus colordiffuse="clear">common/white.png</textureupfocus>
+				<texturedown colordiffuse="clear">common/white.png</texturedown>
+				<texturedownfocus colordiffuse="clear">common/white.png</texturedownfocus>
+				<textureupdisabled colordiffuse="clear">common/white.png</textureupdisabled>
+				<texturedowndisabled colordiffuse="clear">common/white.png</texturedowndisabled>
+				<spincolor>text_muted</spincolor>
+			</control>
+			<control type="button" id="10">
+				<width>360</width>
+				<height>64</height>
+				<font>LabelBold</font>
+				<textoffsetx>28</textoffsetx>
+				<textcolor>text_muted</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+				<texturenofocus border="24" colordiffuse="clear">common/pill48.png</texturenofocus>
+			</control>
+			<control type="image" id="11">
+				<width>$PARAM[w]</width>
+				<height>2</height>
+				<texture colordiffuse="hairline">common/white.png</texture>
+			</control>
+			<control type="edit" id="12">
+				<width>$PARAM[w]</width>
+				<include>Settings_RowLook</include>
+			</control>
+			<control type="sliderex" id="13">
+				<width>$PARAM[w]</width>
+				<include>Settings_RowLook</include>
+				<sliderwidth>300</sliderwidth>
+				<sliderheight>12</sliderheight>
+				<texturesliderbar border="6" colordiffuse="progress_track">common/pill16.png</texturesliderbar>
+				<textureslidernib colordiffuse="text">common/nib.png</textureslidernib>
+				<textureslidernibfocus colordiffuse="text_dark">common/nib.png</textureslidernibfocus>
+			</control>
+			<control type="label" id="14">
+				<width>$PARAM[w]</width>
+				<height>56</height>
+				<font>CaptionCaps</font>
+				<textcolor>text_faint</textcolor>
+				<aligny>bottom</aligny>
+				<textoffsetx>28</textoffsetx>
+			</control>
+			<control type="colorbutton" id="15">
+				<width>$PARAM[w]</width>
+				<include>Settings_RowLook</include>
+				<colorwidth>40</colorwidth>
+				<colorheight>40</colorheight>
+				<colorposx>-28</colorposx>
+				<texturecolormask>common/circle.png</texturecolormask>
+				<texturecolordisabledmask>common/circle.png</texturecolordisabledmask>
+			</control>
+		</definition>
+	</include>
+	<include name="Settings_RowLook">
+		<height>68</height>
+		<aligny>center</aligny>
+		<font>Label</font>
+		<textoffsetx>28</textoffsetx>
+		<textcolor>text</textcolor>
+		<focusedcolor>text_dark</focusedcolor>
+		<disabledcolor>text_faint</disabledcolor>
+		<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+		<texturenofocus border="24" colordiffuse="clear">common/pill48.png</texturenofocus>
+	</include>
+</includes>

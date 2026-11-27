@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Minimal OSD: title, seek bar and one icon row. Audio & Subtitles is first and focused. -->
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<control type="image">
+			<left>0</left><top>0</top><width>1920</width><height>300</height>
+			<texture colordiffuse="CC000000">gradients/top.png</texture>
+		</control>
+		<control type="group">
+			<left>96</left>
+			<top>40</top>
+			<control type="label">
+				<width>1300</width>
+				<height>60</height>
+				<font>Title</font>
+				<label>$VAR[Player_Title]</label>
+			</control>
+			<control type="label">
+				<top>56</top>
+				<width>1300</width>
+				<height>40</height>
+				<font>Meta</font>
+				<textcolor>text_muted</textcolor>
+				<label>$VAR[Player_Subtitle]</label>
+			</control>
+		</control>
+		<include>Clock</include>
+		<include content="Player_SeekBar"><param name="top" value="980"/></include>
+		<control type="grouplist" id="9000">
+			<animation effect="fade" end="0" time="150" condition="Window.IsVisible(1101)" reversible="true">Conditional</animation>
+			<left>96</left>
+			<top>836</top>
+			<width>1728</width>
+			<height>84</height>
+			<orientation>horizontal</orientation>
+			<itemgap>20</itemgap>
+			<control type="button" id="5001">
+				<width>380</width>
+				<height>84</height>
+				<font>LabelBold</font>
+				<label>$LOCALIZE[31131]</label>
+				<textoffsetx>40</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>text</textcolor>
+				<focusedcolor>text_dark</focusedcolor>
+				<texturefocus border="24" colordiffuse="focus_fill">common/pill48.png</texturefocus>
+				<texturenofocus border="24" colordiffuse="accent_soft">common/pill48.png</texturenofocus>
+				<onclick>ActivateWindow(1101)</onclick>
+			</control>
+			<include content="OSD_IconButton"><param name="id" value="5002"/><param name="icon" value="$VAR[Icon_Chapters]"/><param name="onclick" value="ActivateWindow(videobookmarks)"/></include>
+			<include content="OSD_IconButton"><param name="id" value="5003"/><param name="icon" value="$VAR[Icon_Sliders]"/><param name="onclick" value="ActivateWindow(osdvideosettings)"/></include>
+			<include content="OSD_IconButton"><param name="id" value="5005"/><param name="icon" value="$VAR[Icon_Next]"/><param name="onclick" value="PlayerControl(Next)"/><param name="visible" value="Integer.IsGreater(Playlist.Length(video),1) + !Playlist.IsLast(video)"/></include>
+			<include content="OSD_IconButton"><param name="id" value="5004"/><param name="icon" value="$VAR[Icon_Stop]"/><param name="onclick" value="PlayerControl(Stop)"/></include>
+		</control>
+		<!-- tooltip for the focused icon -->
+		<control type="label">
+			<left>96</left>
+			<top>790</top>
+			<width>1000</width>
+			<height>36</height>
+			<font>Caption</font>
+			<textcolor>text_muted</textcolor>
+			<label>$VAR[OSD_Hint]</label>
+		</control>
+	</controls>
+</window>

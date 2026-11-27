@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tier 3: two-pane file manager (lists 20/21, path labels 101/102) -->
+<window>
+	<defaultcontrol always="true">20</defaultcontrol>
+	<include>Anim_Window</include>
+	<controls>
+		<include>Background_Solid</include>
+		<include>View_Header</include>
+		<control type="label" id="101"><left>96</left><top>120</top><width>820</width><height>40</height><font>Small</font><textcolor>text_faint</textcolor></control>
+		<control type="label" id="102"><left>1000</left><top>120</top><width>820</width><height>40</height><font>Small</font><textcolor>text_faint</textcolor></control>
+		<control type="list" id="20">
+			<left>72</left><top>170</top><width>900</width><height>870</height>
+			<onright>21</onright><pagecontrol>60</pagecontrol>
+			<include content="Template_IconRows"><param name="id" value="20"/><param name="w" value="900"/></include>
+		</control>
+		<control type="list" id="21">
+			<left>976</left><top>170</top><width>900</width><height>870</height>
+			<onleft>20</onleft><pagecontrol>61</pagecontrol>
+			<include content="Template_IconRows"><param name="id" value="21"/><param name="w" value="900"/></include>
+		</control>
+		<control type="scrollbar" id="60"><left>40</left><top>170</top><height>860</height><visible>false</visible></control>
+		<control type="scrollbar" id="61"><left>1880</left><top>170</top><height>860</height><visible>false</visible></control>
+	</controls>
+</window>
